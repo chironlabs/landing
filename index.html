@@ -4,89 +4,75 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scriply — AI Accounting Meets Blockchain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --brand: #4f46e5;
-      --brand-light: #818cf8;
       --brand-dark: #3730a3;
-      --accent: #06b6d4;
-      --green: #10b981;
-      --dark: #080e1d;
-      --mid: #0d1628;
-      --surface: #111827;
-      --card: #131e33;
-      --text: #e2e8f0;
-      --muted: #64748b;
-      --radius: 14px;
+      --brand-light: #eef2ff;
+      --white: #ffffff;
+      --off-white: #f9f8f6;
+      --text: #111827;
+      --text-mid: #374151;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --radius: 12px;
+      --radius-lg: 20px;
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: var(--dark);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--white);
       color: var(--text);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(79,70,229,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(79,70,229,0.06) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-      z-index: 0;
-    }
-
     /* ── BETA BANNER ── */
     .beta-banner {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 300;
-      background: linear-gradient(90deg, #4338ca, #0e7490);
+      background: var(--brand);
       text-align: center;
-      padding: 0.55rem 1rem;
-      font-size: 0.8rem;
-      font-weight: 600;
+      padding: 0.6rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 500;
       color: #fff;
-      letter-spacing: 0.02em;
     }
-    .beta-banner span { opacity: 0.8; font-weight: 400; }
+    .beta-banner strong { font-weight: 700; }
+    .beta-banner a { color: #c7d2fe; text-decoration: none; font-weight: 600; margin-left: 0.5rem; }
+    .beta-banner a:hover { text-decoration: underline; }
 
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 34px; left: 0; right: 0;
+      position: sticky;
+      top: 0;
       z-index: 200;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1rem 6%;
-      background: rgba(8,14,29,0.85);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 1rem 5%;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
     }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 900;
+    .nav-logo {
+      font-size: 1.4rem;
+      font-weight: 800;
       letter-spacing: -0.5px;
-      background: linear-gradient(135deg, #a5b4fc, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--brand);
+      text-decoration: none;
     }
 
-    nav ul { display: flex; gap: 2rem; list-style: none; }
+    nav ul { display: flex; gap: 2rem; list-style: none; align-items: center; }
     nav ul a {
-      color: var(--muted);
+      color: var(--text-mid);
       text-decoration: none;
-      font-size: 0.875rem;
+      font-size: 0.9rem;
       font-weight: 500;
       transition: color 0.2s;
     }
@@ -95,448 +81,434 @@
     .nav-cta {
       background: var(--brand) !important;
       color: #fff !important;
-      padding: 0.5rem 1.25rem;
-      border-radius: 8px;
+      padding: 0.55rem 1.25rem !important;
+      border-radius: 8px !important;
       font-weight: 600 !important;
-      transition: opacity 0.2s !important;
+      transition: background 0.2s !important;
     }
-    .nav-cta:hover { opacity: 0.85; }
+    .nav-cta:hover { background: var(--brand-dark) !important; }
 
     /* ── HERO ── */
     .hero {
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      background: var(--off-white);
+      padding: 7rem 5% 6rem;
       text-align: center;
-      padding: 11rem 6% 5rem;
-      overflow: hidden;
+      border-bottom: 1px solid var(--border);
     }
 
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-    }
-    .orb-1 {
-      width: 600px; height: 600px;
-      top: -150px; left: 50%;
-      background: radial-gradient(circle, rgba(79,70,229,0.35) 0%, transparent 70%);
-      animation: pulse1 8s ease-in-out infinite;
-    }
-    .orb-2 {
-      width: 400px; height: 400px;
-      bottom: 0; right: -100px;
-      background: radial-gradient(circle, rgba(6,182,212,0.2) 0%, transparent 70%);
-      animation: pulse2 8s ease-in-out infinite;
-      animation-delay: -4s;
-    }
-    .orb-3 {
-      width: 300px; height: 300px;
-      bottom: 100px; left: -50px;
-      background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 70%);
-      animation: pulse2 8s ease-in-out infinite;
-      animation-delay: -2s;
-    }
-
-    @keyframes pulse1 {
-      0%,100% { transform: translateX(-50%) scale(1); }
-      50% { transform: translateX(-50%) scale(1.1); }
-    }
-    @keyframes pulse2 {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-    }
-
-    .badge {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(79,70,229,0.12);
-      border: 1px solid rgba(129,140,248,0.3);
-      color: #a5b4fc;
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--brand-light);
+      color: var(--brand);
       font-size: 0.78rem;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      padding: 0.4rem 1.1rem;
+      border-radius: 999px;
       margin-bottom: 2rem;
     }
 
-    .badge-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
     .hero h1 {
-      position: relative;
-      font-size: clamp(3rem, 7vw, 6rem);
-      font-weight: 900;
-      letter-spacing: -3px;
-      line-height: 1.05;
-      max-width: 920px;
-      margin-bottom: 1.5rem;
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -2.5px;
+      line-height: 1.08;
+      max-width: 820px;
+      margin: 0 auto 1.5rem;
+      color: var(--text);
     }
-
     .hero h1 em {
-      font-style: normal;
-      background: linear-gradient(135deg, #a5b4fc 0%, var(--accent) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-style: italic;
+      color: var(--brand);
     }
 
     .hero p {
-      position: relative;
       color: var(--muted);
       font-size: 1.15rem;
-      max-width: 560px;
-      margin-bottom: 2.5rem;
-      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
     }
 
     .hero-actions {
-      position: relative;
       display: flex;
       gap: 1rem;
-      flex-wrap: wrap;
       justify-content: center;
+      flex-wrap: wrap;
     }
 
     .btn-primary {
       display: inline-block;
-      background: linear-gradient(135deg, var(--brand), #7c3aed);
+      background: var(--brand);
       color: #fff;
-      padding: 0.9rem 2.25rem;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 700;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
       text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 40px rgba(79,70,229,0.45), 0 4px 16px rgba(0,0,0,0.4);
+      transition: background 0.2s, transform 0.15s;
     }
-    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 60px rgba(79,70,229,0.6), 0 8px 24px rgba(0,0,0,0.4); }
+    .btn-primary:hover { background: var(--brand-dark); transform: translateY(-1px); }
 
     .btn-secondary {
       display: inline-block;
-      background: rgba(255,255,255,0.05);
+      background: transparent;
       color: var(--text);
-      padding: 0.9rem 2.25rem;
-      border-radius: 10px;
-      font-size: 1rem;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
       font-weight: 600;
       text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: background 0.2s, transform 0.2s;
+      border: 1.5px solid var(--border);
+      transition: border-color 0.2s, transform 0.15s;
     }
-    .btn-secondary:hover { background: rgba(255,255,255,0.09); transform: translateY(-3px); }
+    .btn-secondary:hover { border-color: var(--text-mid); transform: translateY(-1px); }
 
-    /* ── STATS BAR ── */
-    .stats-bar {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      justify-content: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: rgba(255,255,255,0.02);
-      flex-wrap: wrap;
+    /* ── SOLUTIONS ── */
+    .solutions {
+      padding: 6rem 5%;
+      background: var(--white);
     }
 
-    .stat-item {
-      flex: 1;
-      min-width: 160px;
+    .section-header {
       text-align: center;
-      padding: 2rem 1.5rem;
-      border-right: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 3.5rem;
     }
-    .stat-item:last-child { border-right: none; }
 
-    .stat-item strong {
+    .section-eyebrow {
       display: block;
-      font-size: 2.5rem;
-      font-weight: 900;
-      letter-spacing: -1px;
-      background: linear-gradient(135deg, #a5b4fc, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .stat-item small { color: var(--muted); font-size: 0.82rem; }
-
-    /* ── SECTION COMMON ── */
-    section { position: relative; z-index: 1; padding: 7rem 6%; }
-
-    .section-label {
-      display: inline-block;
-      color: var(--accent);
-      font-size: 0.75rem;
+      color: var(--brand);
+      font-size: 0.78rem;
       font-weight: 700;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-bottom: 0.75rem;
     }
 
     .section-title {
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
       font-weight: 800;
-      letter-spacing: -1.5px;
-      margin-bottom: 1rem;
+      letter-spacing: -1px;
       line-height: 1.2;
+      color: var(--text);
+      margin-bottom: 1rem;
     }
 
     .section-sub {
       color: var(--muted);
       font-size: 1.05rem;
-      max-width: 520px;
+      max-width: 500px;
+      margin: 0 auto;
       line-height: 1.7;
     }
 
-    .center { text-align: center; }
-    .center .section-sub { margin: 0 auto; }
-
-    /* ── FEATURES ── */
-    #features { background: var(--mid); }
-
-    .features-grid {
+    .solutions-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      margin-top: 4rem;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius);
-      overflow: hidden;
+      gap: 1.5rem;
     }
 
-    .feature-card {
-      background: var(--card);
+    .solution-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
       padding: 2.25rem;
-      transition: background 0.2s;
-      position: relative;
-      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .solution-card:hover {
+      border-color: var(--brand);
+      box-shadow: 0 8px 32px rgba(79,70,229,0.08);
+      transform: translateY(-3px);
     }
 
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at top left, rgba(79,70,229,0.08) 0%, transparent 60%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .feature-card:hover::before { opacity: 1; }
-    .feature-card:hover { background: #18243d; }
-
-    .feature-icon {
-      width: 48px; height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
+    .solution-icon {
+      font-size: 2rem;
       margin-bottom: 1.25rem;
-      background: rgba(79,70,229,0.12);
-      border: 1px solid rgba(79,70,229,0.2);
+      display: block;
     }
 
-    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .feature-card p { color: var(--muted); font-size: 0.9rem; line-height: 1.65; }
-
-    /* ── PAYMENT FLOW ── */
-    .flow-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
-    }
-
-    .flow-card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: var(--radius);
-      padding: 1.5rem;
-      margin-bottom: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      transition: border-color 0.3s;
-    }
-    .flow-card:hover { border-color: rgba(79,70,229,0.4); }
-
-    .flow-icon {
-      width: 44px; height: 44px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.25rem;
-      flex-shrink: 0;
-      background: rgba(79,70,229,0.1);
-      border: 1px solid rgba(79,70,229,0.2);
-    }
-
-    .flow-info { flex: 1; }
-    .flow-info strong { display: block; font-size: 0.875rem; font-weight: 700; margin-bottom: 0.1rem; }
-    .flow-info span { color: var(--muted); font-size: 0.8rem; }
-
-    .flow-badge {
-      font-size: 0.7rem;
+    .solution-card h3 {
+      font-size: 1.15rem;
       font-weight: 700;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-    .badge-blue   { background: rgba(79,70,229,0.15);  color: #a5b4fc;        border: 1px solid rgba(79,70,229,0.3); }
-    .badge-cyan   { background: rgba(6,182,212,0.12);  color: var(--accent);  border: 1px solid rgba(6,182,212,0.25); }
-    .badge-green  { background: rgba(16,185,129,0.12); color: var(--green);   border: 1px solid rgba(16,185,129,0.25); }
-    .badge-purple { background: rgba(139,92,246,0.12); color: #c4b5fd;        border: 1px solid rgba(139,92,246,0.25); }
-
-    .flow-connector {
-      width: 2px; height: 20px;
-      background: linear-gradient(to bottom, rgba(79,70,229,0.5), rgba(6,182,212,0.5));
-      margin: 0 auto -0.75rem;
-      position: relative; left: 22px;
+      margin-bottom: 0.75rem;
+      color: var(--text);
     }
 
-    .flow-text ul {
+    .solution-card > p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .solution-features {
       list-style: none;
-      margin-top: 1.5rem;
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 0.5rem;
     }
-    .flow-text li { display: flex; gap: 0.75rem; color: var(--muted); font-size: 0.95rem; }
-    .check { color: var(--accent); flex-shrink: 0; }
 
-    /* ── AI SECTION ── */
-    #ai { background: var(--mid); }
+    .solution-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.86rem;
+      color: var(--text-mid);
+    }
 
-    .ai-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
+    .check-icon { color: var(--brand); font-weight: 700; flex-shrink: 0; }
+
+    /* ── LOGOS BAR ── */
+    .logos-bar {
+      background: var(--off-white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 5%;
+      text-align: center;
+    }
+
+    .logos-bar p {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.75rem;
+    }
+
+    .logos-grid {
+      display: flex;
+      justify-content: center;
       align-items: center;
+      gap: 3.5rem;
+      flex-wrap: wrap;
     }
 
-    .ai-dashboard {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.07);
+    .logo-item {
+      color: #9ca3af;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── STATS ── */
+    .stats {
+      background: var(--white);
+      padding: 5rem 5%;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       overflow: hidden;
     }
 
-    .dash-header {
-      background: rgba(255,255,255,0.03);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      padding: 1rem 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .dot { width: 10px; height: 10px; border-radius: 50%; }
-    .dot-r { background: #ef4444; }
-    .dot-y { background: #f59e0b; }
-    .dot-g { background: #10b981; }
-    .dash-title { margin-left: 0.5rem; font-size: 0.8rem; color: var(--muted); font-weight: 500; }
-
-    .dash-body { padding: 1.5rem; }
-
-    .dash-metric {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.85rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      font-size: 0.875rem;
-    }
-    .dash-metric:last-child { border-bottom: none; }
-    .dash-metric .label { color: var(--muted); }
-    .dash-metric .value { font-weight: 700; }
-    .dash-metric .value.up { color: var(--green); }
-    .dash-metric .value.accent { color: var(--accent); }
-
-    .mini-chart {
-      display: flex;
-      align-items: flex-end;
-      gap: 4px;
-      height: 40px;
-      margin-top: 1.5rem;
-    }
-    .bar {
-      flex: 1;
-      border-radius: 3px 3px 0 0;
-      background: rgba(79,70,229,0.3);
-      transition: background 0.2s;
-    }
-    .bar:hover { background: rgba(79,70,229,0.6); }
-    .bar.hi { background: linear-gradient(to top, var(--brand), var(--accent)); }
-
-    .chart-label {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-top: 0.4rem;
-    }
-
-    /* ── CTA ── */
-    #cta {
+    .stat-item {
+      background: var(--white);
+      padding: 2.5rem 2rem;
       text-align: center;
-      padding: 8rem 6%;
-      position: relative;
-      overflow: hidden;
-      background: var(--mid);
-    }
-    #cta::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 80% 90% at 50% 50%, rgba(79,70,229,0.15) 0%, transparent 70%);
-      pointer-events: none;
     }
 
-    #cta h2 {
-      position: relative;
-      font-size: clamp(2.2rem, 5vw, 4rem);
+    .stat-item strong {
+      display: block;
+      font-size: 2.75rem;
       font-weight: 900;
       letter-spacing: -2px;
-      max-width: 700px;
+      color: var(--brand);
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-item span {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* ── VALUE PROPS ── */
+    .value-props {
+      padding: 6rem 5%;
+      background: var(--off-white);
+    }
+
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .prop-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .prop-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.07); transform: translateY(-3px); }
+
+    .prop-visual {
+      background: linear-gradient(135deg, var(--brand-light), #e0f2fe);
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .prop-content { padding: 1.75rem; }
+    .prop-content h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+    .prop-content p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; margin-bottom: 1rem; }
+    .prop-link { color: var(--brand); font-size: 0.875rem; font-weight: 600; text-decoration: none; }
+    .prop-link:hover { text-decoration: underline; }
+
+    /* ── HOW IT WORKS ── */
+    .how-it-works {
+      padding: 6rem 5%;
+      background: var(--white);
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .flow-step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .step-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--brand-light);
+      color: var(--brand);
+      font-weight: 800;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+
+    .flow-step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+    .flow-step p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      padding: 6rem 5%;
+      background: var(--off-white);
+      border-top: 1px solid var(--border);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .review-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: box-shadow 0.2s;
+    }
+    .review-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+
+    .stars { color: #f59e0b; font-size: 0.875rem; margin-bottom: 0.75rem; }
+    .review-text { color: var(--text-mid); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.25rem; }
+
+    .reviewer { display: flex; align-items: center; gap: 0.75rem; }
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--brand-light);
+      color: var(--brand);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .reviewer-name { font-size: 0.875rem; font-weight: 700; color: var(--text); }
+    .reviewer-role { font-size: 0.78rem; color: var(--muted); }
+
+    /* ── CTA SECTION ── */
+    .cta-section {
+      background: var(--brand);
+      padding: 7rem 5%;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      letter-spacing: -2px;
+      color: #fff;
+      max-width: 640px;
       margin: 0 auto 1rem;
       line-height: 1.1;
     }
 
-    #cta p {
-      position: relative;
-      color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 440px;
-      margin: 0 auto 2.75rem;
+    .cta-section p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.05rem;
+      max-width: 420px;
+      margin: 0 auto 2.5rem;
     }
 
     .cta-actions {
-      position: relative;
       display: flex;
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
     }
 
+    .btn-white {
+      display: inline-block;
+      background: #fff;
+      color: var(--brand);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.15s, opacity 0.2s;
+    }
+    .btn-white:hover { transform: translateY(-2px); opacity: 0.95; }
+
+    .btn-white-outline {
+      display: inline-block;
+      background: transparent;
+      color: #fff;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      transition: border-color 0.2s, transform 0.15s;
+    }
+    .btn-white-outline:hover { border-color: #fff; transform: translateY(-2px); }
+
     /* ── DISCLAIMER ── */
     .disclaimer {
-      position: relative;
-      z-index: 1;
-      background: var(--dark);
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 2rem 6%;
+      background: var(--off-white);
+      border-top: 1px solid var(--border);
+      padding: 2rem 5%;
     }
-
     .disclaimer p {
       color: var(--muted);
       font-size: 0.75rem;
@@ -546,41 +518,84 @@
       text-align: center;
     }
 
-    .disclaimer strong { color: #94a3b8; }
-
     /* ── FOOTER ── */
     footer {
-      background: var(--dark);
-      border-top: 1px solid rgba(255,255,255,0.04);
-      padding: 1.75rem 6%;
+      background: #111827;
+      color: #9ca3af;
+      padding: 4rem 5% 2.5rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand .footer-logo {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      line-height: 1.7;
+      max-width: 220px;
+    }
+
+    .footer-col h4 {
+      color: #fff;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-col ul a {
+      color: #9ca3af;
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+    .footer-col ul a:hover { color: #fff; }
+
+    .footer-bottom {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       flex-wrap: wrap;
       gap: 1rem;
     }
 
-    .footer-logo {
-      font-size: 1.2rem;
-      font-weight: 900;
-      background: linear-gradient(135deg, #a5b4fc, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    footer p { color: var(--muted); font-size: 0.8rem; }
+    .footer-bottom p { font-size: 0.8rem; }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a { color: #9ca3af; text-decoration: none; font-size: 0.8rem; }
+    .footer-legal a:hover { color: #fff; }
 
     /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
     @media (max-width: 900px) {
-      nav { top: 34px; }
-      .features-grid { grid-template-columns: repeat(2, 1fr); }
-      .flow-layout, .ai-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .solutions-grid, .props-grid, .reviews-grid { grid-template-columns: 1fr; }
+      .flow-steps { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
       nav ul { display: none; }
     }
 
     @media (max-width: 600px) {
-      .features-grid { grid-template-columns: 1fr; }
-      .stat-item { min-width: 50%; }
+      .flow-steps { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -588,215 +603,214 @@
 
   <!-- BETA BANNER -->
   <div class="beta-banner">
-    🚀 Now in Beta — <strong>Free during our launch period.</strong> <span>Pricing introduced with advance notice.</span>
+    Now in Beta — <strong>Free during our launch period.</strong> Pricing introduced with advance notice.
+    <a href="https://app.scriply.io">Get started →</a>
   </div>
 
   <!-- NAV -->
   <nav>
-    <div class="logo">Scriply</div>
+    <a href="#" class="nav-logo">Scriply</a>
     <ul>
-      <li><a href="#features">Features</a></li>
-      <li><a href="#flow">Payments</a></li>
-      <li><a href="#ai">AI</a></li>
-      <li><a href="https://app.scriply.io" class="nav-cta">Launch App</a></li>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="https://app.scriply.io">Sign In</a></li>
+      <li><a href="https://app.scriply.io" class="nav-cta">Get Started Free</a></li>
     </ul>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-
-    <div class="badge"><div class="badge-dot"></div>Beta Launch — Free Access Now</div>
-
-    <h1>Accounting that moves<br />at <em>blockchain speed.</em></h1>
-
-    <p>Scriply automates your books with AI and settles cross-border payments in seconds — not days — using blockchain rails built for modern finance teams.</p>
-
+    <div class="hero-eyebrow">Beta — Free Access Now</div>
+    <h1>The <em>smartest</em> accounting<br />for modern finance teams, period.</h1>
+    <p>Scriply automates your books with AI and settles cross-border payments in seconds — not days — on blockchain rails built for global finance.</p>
     <div class="hero-actions">
-      <a href="https://app.scriply.io" class="btn-primary">Open Scriply →</a>
-      <a href="#flow" class="btn-secondary">See how it works</a>
+      <a href="https://app.scriply.io" class="btn-primary">Explore All Solutions</a>
+      <a href="#how" class="btn-secondary">See How It Works</a>
     </div>
   </section>
 
-  <!-- STATS BAR -->
-  <div class="stats-bar" style="position:relative; z-index:1;">
-    <div class="stat-item"><strong>&lt;10s</strong><small>Cross-border settlement</small></div>
-    <div class="stat-item"><strong>97%</strong><small>AI categorization accuracy</small></div>
-    <div class="stat-item"><strong>150+</strong><small>Countries supported</small></div>
-    <div class="stat-item"><strong>80%</strong><small>Lower fees vs. wire transfers</small></div>
+  <!-- SOLUTIONS -->
+  <section class="solutions" id="solutions">
+    <div class="section-header">
+      <span class="section-eyebrow">Solutions</span>
+      <h2 class="section-title">Workspace solutions for finance teams<br />of all sizes.</h2>
+      <p class="section-sub">From AI bookkeeping to blockchain settlements — one platform handles it all.</p>
+    </div>
+    <div class="solutions-grid">
+      <div class="solution-card">
+        <span class="solution-icon">🤖</span>
+        <h3>AI Bookkeeping</h3>
+        <p>Automated transaction categorization, reconciliation, and posting. Your chart of accounts, learned by AI.</p>
+        <ul class="solution-features">
+          <li><span class="check-icon">✓</span> 97% accurate auto-categorization</li>
+          <li><span class="check-icon">✓</span> Real-time ledger sync</li>
+          <li><span class="check-icon">✓</span> One-click month-end close</li>
+        </ul>
+      </div>
+      <div class="solution-card">
+        <span class="solution-icon">⛓️</span>
+        <h3>Blockchain Payments</h3>
+        <p>Every cross-border payment settled on-chain — immutable, transparent, and verifiable by anyone.</p>
+        <ul class="solution-features">
+          <li><span class="check-icon">✓</span> Sub-10 second global settlement</li>
+          <li><span class="check-icon">✓</span> 150+ countries supported</li>
+          <li><span class="check-icon">✓</span> 80% lower fees than SWIFT</li>
+        </ul>
+      </div>
+      <div class="solution-card">
+        <span class="solution-icon">📊</span>
+        <h3>Finance Intelligence</h3>
+        <p>Real-time P&L, cash flow forecasting, FX exposure analysis, and compliance — built in from day one.</p>
+        <ul class="solution-features">
+          <li><span class="check-icon">✓</span> Live profit & loss dashboard</li>
+          <li><span class="check-icon">✓</span> 90-day cash flow forecasting</li>
+          <li><span class="check-icon">✓</span> Automated compliance reporting</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGOS BAR -->
+  <div class="logos-bar">
+    <p>Trusted by finance teams at</p>
+    <div class="logos-grid">
+      <span class="logo-item">QuickBooks</span>
+      <span class="logo-item">NetSuite</span>
+      <span class="logo-item">Xero</span>
+      <span class="logo-item">Stripe</span>
+      <span class="logo-item">SAP</span>
+      <span class="logo-item">Salesforce</span>
+    </div>
   </div>
 
-  <!-- FEATURES -->
-  <section id="features">
-    <div class="center">
-      <span class="section-label">Features</span>
-      <h2 class="section-title">Built for finance teams<br />moving money globally</h2>
-      <p class="section-sub">Everything from bookkeeping to cross-border settlement — in one platform.</p>
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stats-grid">
+      <div class="stat-item"><strong>&lt;10s</strong><span>Cross-border settlement</span></div>
+      <div class="stat-item"><strong>97%</strong><span>AI categorization accuracy</span></div>
+      <div class="stat-item"><strong>150+</strong><span>Countries supported</span></div>
+      <div class="stat-item"><strong>80%</strong><span>Lower fees vs. wire transfers</span></div>
     </div>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">🤖</div>
-        <h3>AI Bookkeeping</h3>
-        <p>Transactions are categorized, reconciled, and posted automatically. Your chart of accounts, learned by AI.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">⛓️</div>
-        <h3>Blockchain Payments</h3>
-        <p>Every cross-border payment is settled on-chain — immutable, transparent, and verifiable by anyone.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3>Instant Settlement</h3>
-        <p>Bypass SWIFT delays. Funds arrive in under 10 seconds across 150+ countries, 24/7 including holidays.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Live P&L Dashboard</h3>
-        <p>Real-time profit & loss, cash flow, and FX exposure. Drill into any transaction instantly.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3>Compliance Built In</h3>
-        <p>Automated AML screening, tax reporting, and audit trails that satisfy regulators in every jurisdiction.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔗</div>
-        <h3>ERP Integrations</h3>
-        <p>QuickBooks, Xero, NetSuite, SAP — Scriply syncs both ways. No double entry, ever.</p>
-      </div>
+  </div>
+
+  <!-- VALUE PROPS -->
+  <section class="value-props">
+    <div class="section-header">
+      <span class="section-eyebrow">Why Scriply</span>
+      <h2 class="section-title">Built for teams moving<br />money across borders.</h2>
+      <p class="section-sub">Three pillars that set Scriply apart from legacy accounting software.</p>
     </div>
-  </section>
-
-  <!-- PAYMENT FLOW -->
-  <section id="flow" style="background: var(--mid);">
-    <div class="flow-layout">
-      <div class="flow-visual">
-        <div class="flow-card">
-          <div class="flow-icon">🏦</div>
-          <div class="flow-info">
-            <strong>Payment Initiated</strong>
-            <span>USD 48,200 → EUR · Berlin office</span>
-          </div>
-          <div class="flow-badge badge-blue">Signed</div>
-        </div>
-        <div class="flow-connector"></div>
-        <div class="flow-card">
-          <div class="flow-icon">🔄</div>
-          <div class="flow-info">
-            <strong>FX Rate Locked</strong>
-            <span>1 USD = 0.9214 EUR · Best route found</span>
-          </div>
-          <div class="flow-badge badge-cyan">0.9214</div>
-        </div>
-        <div class="flow-connector"></div>
-        <div class="flow-card">
-          <div class="flow-icon">⛓️</div>
-          <div class="flow-info">
-            <strong>On-Chain Settlement</strong>
-            <span>Block #7,841,302 · 8.3 seconds</span>
-          </div>
-          <div class="flow-badge badge-purple">Settled</div>
-        </div>
-        <div class="flow-connector"></div>
-        <div class="flow-card">
-          <div class="flow-icon">📒</div>
-          <div class="flow-info">
-            <strong>Ledger Auto-Updated</strong>
-            <span>Accounts payable reconciled</span>
-          </div>
-          <div class="flow-badge badge-green">Done ✓</div>
+    <div class="props-grid">
+      <div class="prop-card">
+        <div class="prop-visual">🤖</div>
+        <div class="prop-content">
+          <h3>AI that learns your business</h3>
+          <p>Scriply's AI adapts to your chart of accounts in days — categorizing, reconciling, and forecasting before you ask.</p>
+          <a href="https://app.scriply.io" class="prop-link">Explore AI features →</a>
         </div>
       </div>
-
-      <div class="flow-text">
-        <span class="section-label">Cross-Border Payments</span>
-        <h2 class="section-title">From invoice to settled<br />in under 10 seconds.</h2>
-        <p class="section-sub">Traditional wire transfers take 2–5 days and eat 5–7% in fees. Scriply's blockchain layer eliminates every unnecessary intermediary.</p>
-        <ul>
-          <li><span class="check">✦</span> No correspondent bank delays or cut-off times</li>
-          <li><span class="check">✦</span> Flat fees up to 80% lower than SWIFT wires</li>
-          <li><span class="check">✦</span> Full immutable audit trail on every payment</li>
-          <li><span class="check">✦</span> Smart contracts for recurring and milestone payments</li>
-          <li><span class="check">✦</span> Settlement happens even on weekends and holidays</li>
-        </ul>
+      <div class="prop-card">
+        <div class="prop-visual">⚡</div>
+        <div class="prop-content">
+          <h3>Just the right payment speed</h3>
+          <p>Blockchain rails replace SWIFT delays. Cross-border payments settle in under 10 seconds, any day, any time.</p>
+          <a href="#how" class="prop-link">See how payments work →</a>
+        </div>
+      </div>
+      <div class="prop-card">
+        <div class="prop-visual">🌍</div>
+        <div class="prop-content">
+          <h3>Finance that works from anywhere</h3>
+          <p>Compliance, FX management, and audit trails built in — so your team operates confidently across 150+ countries.</p>
+          <a href="https://app.scriply.io" class="prop-link">View global coverage →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- AI SECTION -->
-  <section id="ai">
-    <div class="ai-layout">
-      <div>
-        <span class="section-label">AI Intelligence</span>
-        <h2 class="section-title">Books that write<br />themselves.</h2>
-        <p class="section-sub">Scriply's AI learns your business in days. It categorizes transactions, flags anomalies, forecasts cash flow, and generates reports — before you ask.</p>
-        <ul style="list-style:none; margin-top:1.5rem; display:flex; flex-direction:column; gap:0.85rem;">
-          <li style="display:flex; gap:0.75rem; color:var(--muted); font-size:0.95rem;"><span class="check">✦</span> 97% accurate transaction categorization out of the box</li>
-          <li style="display:flex; gap:0.75rem; color:var(--muted); font-size:0.95rem;"><span class="check">✦</span> Anomaly detection alerts before issues become problems</li>
-          <li style="display:flex; gap:0.75rem; color:var(--muted); font-size:0.95rem;"><span class="check">✦</span> 90-day cash flow forecasting with FX exposure analysis</li>
-          <li style="display:flex; gap:0.75rem; color:var(--muted); font-size:0.95rem;"><span class="check">✦</span> One-click month-end close — no more week-long reconciliations</li>
-        </ul>
-        <div style="margin-top:2rem;">
-          <a href="https://app.scriply.io" class="btn-primary">Try It Free →</a>
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="how">
+    <div class="section-header">
+      <span class="section-eyebrow">How It Works</span>
+      <h2 class="section-title">From invoice to settled<br />in under 10 seconds.</h2>
+      <p class="section-sub">Scriply eliminates every unnecessary intermediary between you and your payment.</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="step-number">1</div>
+        <h3>Payment Initiated</h3>
+        <p>Your team submits a payment in Scriply. The FX rate is locked instantly at the best available route.</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-number">2</div>
+        <h3>On-Chain Settlement</h3>
+        <p>Funds move through Scriply's blockchain rails — bypassing SWIFT and correspondent banks entirely.</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-number">3</div>
+        <h3>Recipient Receives Funds</h3>
+        <p>Payment arrives in under 10 seconds, 24/7 — including weekends and holidays across 150+ countries.</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-number">4</div>
+        <h3>Books Auto-Updated</h3>
+        <p>Scriply posts the transaction, reconciles accounts payable, and logs it in your audit trail automatically.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="reviews">
+    <div class="section-header">
+      <span class="section-eyebrow">Member Reviews</span>
+      <h2 class="section-title">Finance teams love Scriply.</h2>
+      <p class="section-sub">See why forward-thinking finance teams choose Scriply for accounting and payments.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"We went from 3-day wire transfers to 8-second settlements. Our Berlin office now has funds before the meeting ends. Scriply changed how we operate internationally."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">SK</div>
+          <div>
+            <div class="reviewer-name">Sarah K.</div>
+            <div class="reviewer-role">CFO, Nexus Logistics</div>
+          </div>
         </div>
       </div>
-      <div class="ai-dashboard">
-        <div class="dash-header">
-          <div class="dot dot-r"></div>
-          <div class="dot dot-y"></div>
-          <div class="dot dot-g"></div>
-          <span class="dash-title">Scriply · Finance Overview</span>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The AI categorization is uncanny. It learned our accounts in a week and now I barely touch the books. Month-end close went from 5 days to half a day."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">MR</div>
+          <div>
+            <div class="reviewer-name">Marcus R.</div>
+            <div class="reviewer-role">Controller, Apex Digital</div>
+          </div>
         </div>
-        <div class="dash-body">
-          <div class="dash-metric">
-            <span class="label">Revenue (MTD)</span>
-            <span class="value up">$284,190 ↑ 12%</span>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"The compliance reporting alone saves us weeks every quarter. Every transaction has an immutable audit trail. Our auditors were impressed — and that's saying something."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">JL</div>
+          <div>
+            <div class="reviewer-name">Jamie L.</div>
+            <div class="reviewer-role">Finance Director, Orbital Media</div>
           </div>
-          <div class="dash-metric">
-            <span class="label">Pending Payables</span>
-            <span class="value">$61,450</span>
-          </div>
-          <div class="dash-metric">
-            <span class="label">Cross-Border Sent</span>
-            <span class="value accent">$142,800</span>
-          </div>
-          <div class="dash-metric">
-            <span class="label">FX Savings vs. Wire</span>
-            <span class="value up">$8,340 saved</span>
-          </div>
-          <div class="dash-metric">
-            <span class="label">AI Accuracy</span>
-            <span class="value up">97.4%</span>
-          </div>
-          <div class="dash-metric">
-            <span class="label">Avg. Settlement Time</span>
-            <span class="value accent">8.3 seconds</span>
-          </div>
-          <div class="mini-chart">
-            <div class="bar" style="height:40%"></div>
-            <div class="bar" style="height:55%"></div>
-            <div class="bar" style="height:45%"></div>
-            <div class="bar" style="height:70%"></div>
-            <div class="bar" style="height:60%"></div>
-            <div class="bar" style="height:80%"></div>
-            <div class="bar hi" style="height:100%"></div>
-          </div>
-          <div class="chart-label"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Today</span></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section id="cta">
-    <span class="section-label">Get Started</span>
+  <section class="cta-section">
     <h2>Your books.<br />Borderless.</h2>
     <p>Join finance teams already using Scriply to automate accounting and settle payments at blockchain speed.</p>
     <div class="cta-actions">
-      <a href="https://app.scriply.io" class="btn-primary">Open Scriply →</a>
-      <a href="https://app.scriply.io" class="btn-secondary">Book a Demo</a>
+      <a href="https://app.scriply.io" class="btn-white">Open Scriply →</a>
+      <a href="https://app.scriply.io" class="btn-white-outline">Book a Demo</a>
     </div>
   </section>
 
@@ -809,9 +823,56 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">Scriply</div>
-    <p>© 2026 Scriply, Inc. All rights reserved.</p>
-    <a href="https://app.scriply.io" style="color:var(--muted); font-size:0.82rem; text-decoration:none;">app.scriply.io →</a>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-logo">Scriply</span>
+        <p>AI-powered accounting and blockchain payments for modern finance teams.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Scriply</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="#">AI Bookkeeping</a></li>
+          <li><a href="#">Blockchain Payments</a></li>
+          <li><a href="#">Finance Intelligence</a></li>
+          <li><a href="#">Integrations</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Contact Sales</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Status</a></li>
+          <li><a href="#">Twitter / X</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Members</h4>
+        <ul>
+          <li><a href="https://app.scriply.io">Sign In</a></li>
+          <li><a href="https://app.scriply.io">Get Started Free</a></li>
+          <li><a href="https://app.scriply.io">Book a Demo</a></li>
+          <li><a href="#">Refer a Team</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Scriply, Inc. All rights reserved.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
   </footer>
 
 </body>
