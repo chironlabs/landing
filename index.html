@@ -270,6 +270,29 @@
 
     .check-icon { color: var(--brand-mid); font-weight: 700; flex-shrink: 0; }
 
+    .solutions-grid-single {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .roadmap-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .coming-soon-badge {
+      display: inline-block;
+      background: var(--brand-light);
+      color: var(--brand-mid);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
     /* ── LOGOS BAR ── */
     .logos-bar {
       background: var(--cream-light);
@@ -600,7 +623,7 @@
     }
 
     @media (max-width: 900px) {
-      .solutions-grid, .props-grid, .reviews-grid { grid-template-columns: 1fr; }
+      .solutions-grid, .props-grid, .reviews-grid, .roadmap-grid { grid-template-columns: 1fr; }
       .flow-steps { grid-template-columns: repeat(2, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       nav ul { display: none; }
@@ -626,6 +649,7 @@
     <ul>
       <li><a href="#solutions">Solutions</a></li>
       <li><a href="#how">How It Works</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="https://app.scriply.io">Sign In</a></li>
       <li><a href="https://app.scriply.io" class="nav-cta">Get Started Free</a></li>
     </ul>
@@ -634,8 +658,8 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-eyebrow">Beta — Free Access Now</div>
-    <h1>Your business deserves<br /><em>smarter</em> accounting.</h1>
-    <p>Scriply gives small businesses an AI bookkeeper and payment engine — without the cost of hiring one.</p>
+    <h1>Smarter accounting for<br /><em>small &amp; medium</em> businesses.</h1>
+    <p>Scriply is the AI bookkeeper that replaces your in-house accountant — keeping your books accurate and current, automatically.</p>
     <div class="hero-actions">
       <a href="https://app.scriply.io" class="btn-primary">Explore All Solutions</a>
       <a href="#how" class="btn-secondary">See How It Works</a>
@@ -646,37 +670,50 @@
   <section class="solutions" id="solutions">
     <div class="section-header">
       <span class="section-eyebrow">Solutions</span>
-      <h2 class="section-title">Everything a small business needs<br />to manage money — without the overhead.</h2>
-      <p class="section-sub">Skip the expensive accountant and the manual spreadsheets. Scriply does the work for you.</p>
+      <h2 class="section-title">Everything a small or medium<br />business needs to manage its books.</h2>
+      <p class="section-sub">Replace your in-house accountant and the manual spreadsheets. Scriply does the work for you.</p>
     </div>
-    <div class="solutions-grid">
+    <div class="solutions-grid solutions-grid-single">
       <div class="solution-card">
         <span class="solution-icon">🤖</span>
         <h3>AI Bookkeeping</h3>
         <p>Automated transaction categorization, reconciliation, and posting. Your chart of accounts, learned by AI.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> 97% accurate auto-categorization</li>
+          <li><span class="check-icon">✓</span> AI-powered auto-categorization</li>
           <li><span class="check-icon">✓</span> Real-time ledger sync</li>
           <li><span class="check-icon">✓</span> One-click month-end close</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="solutions" id="roadmap">
+    <div class="section-header">
+      <span class="section-eyebrow">Roadmap</span>
+      <h2 class="section-title">What's coming next.</h2>
+      <p class="section-sub">We're building toward a complete financial back office for small and medium businesses.</p>
+    </div>
+    <div class="solutions-grid roadmap-grid">
       <div class="solution-card">
+        <span class="coming-soon-badge">Coming Soon</span>
         <span class="solution-icon">💵</span>
         <h3>Stablecoin Payments</h3>
         <p>Pay suppliers and contractors in USDC or USDT — no exchange rate surprises, no wire delays, no bank fees.</p>
         <ul class="solution-features">
           <li><span class="check-icon">✓</span> Sub-10 second global settlement</li>
           <li><span class="check-icon">✓</span> 1:1 USD value, always</li>
-          <li><span class="check-icon">✓</span> 80% lower fees than wire transfers</li>
+          <li><span class="check-icon">✓</span> Lower fees than wire transfers</li>
         </ul>
       </div>
       <div class="solution-card">
+        <span class="coming-soon-badge">Coming Soon</span>
         <span class="solution-icon">📊</span>
         <h3>Finance Intelligence</h3>
         <p>Real-time P&amp;L, cash flow forecasting, FX exposure analysis, and compliance — built in from day one.</p>
         <ul class="solution-features">
           <li><span class="check-icon">✓</span> Live profit &amp; loss dashboard</li>
-          <li><span class="check-icon">✓</span> 90-day cash flow forecasting</li>
+          <li><span class="check-icon">✓</span> Cash flow forecasting</li>
           <li><span class="check-icon">✓</span> Automated compliance reporting</li>
         </ul>
       </div>
@@ -686,10 +723,10 @@
   <!-- STATS -->
   <div class="stats">
     <div class="stats-grid">
-      <div class="stat-item"><strong>&lt;10s</strong><span>Cross-border settlement</span></div>
-      <div class="stat-item"><strong>97%</strong><span>AI categorization accuracy</span></div>
-      <div class="stat-item"><strong>150+</strong><span>Countries supported</span></div>
-      <div class="stat-item"><strong>80%</strong><span>Lower fees vs. wire transfers</span></div>
+      <div class="stat-item"><strong>24/7</strong><span>AI bookkeeping, always on</span></div>
+      <div class="stat-item"><strong>Daily</strong><span>Books updated automatically</span></div>
+      <div class="stat-item"><strong>SMB</strong><span>Built for small &amp; medium businesses</span></div>
+      <div class="stat-item"><strong>0</strong><span>Spreadsheets required</span></div>
     </div>
   </div>
 
@@ -710,11 +747,11 @@
         </div>
       </div>
       <div class="prop-card">
-        <div class="prop-visual">⚡</div>
+        <div class="prop-visual">💼</div>
         <div class="prop-content">
-          <h3>Pay anyone, anywhere, in stablecoins</h3>
-          <p>Send USDC or USDT to suppliers and contractors in seconds — always worth exactly $1, with no wire fees or conversion surprises.</p>
-          <a href="#how" class="prop-link">See how payments work →</a>
+          <h3>Replace your in-house accountant</h3>
+          <p>Scriply handles categorization, reconciliation, and reporting — the day-to-day work an in-house accountant would do, at a fraction of the cost.</p>
+          <a href="#solutions" class="prop-link">See what's included →</a>
         </div>
       </div>
       <div class="prop-card">
@@ -732,29 +769,29 @@
   <section class="how-it-works" id="how">
     <div class="section-header">
       <span class="section-eyebrow">How It Works</span>
-      <h2 class="section-title">From invoice to settled<br />in under 10 seconds.</h2>
-      <p class="section-sub">Scriply eliminates every unnecessary intermediary between you and your payment.</p>
+      <h2 class="section-title">From transaction to<br />reconciled books — automatically.</h2>
+      <p class="section-sub">Scriply replaces the manual work an in-house accountant would do, every day.</p>
     </div>
     <div class="flow-steps">
       <div class="flow-step">
         <div class="step-number">1</div>
-        <h3>Payment Initiated</h3>
-        <p>Your team submits a payment in Scriply. The FX rate is locked instantly at the best available route.</p>
+        <h3>Connect Your Accounts</h3>
+        <p>Link your bank accounts, cards, and payment processors to Scriply in minutes.</p>
       </div>
       <div class="flow-step">
         <div class="step-number">2</div>
-        <h3>Stablecoin Settlement</h3>
-        <p>Funds move as USDC or USDT — stable value, instant settlement, no bank intermediaries.</p>
+        <h3>AI Categorizes Transactions</h3>
+        <p>Scriply's AI reads every transaction and assigns it to the right account in your chart of accounts.</p>
       </div>
       <div class="flow-step">
         <div class="step-number">3</div>
-        <h3>Recipient Receives Funds</h3>
-        <p>Payment arrives in under 10 seconds, 24/7 — including weekends and holidays across 150+ countries.</p>
+        <h3>Books Reconciled Automatically</h3>
+        <p>Transactions are matched, reconciled, and posted to your ledger in real time.</p>
       </div>
       <div class="flow-step">
         <div class="step-number">4</div>
-        <h3>Books Auto-Updated</h3>
-        <p>Scriply posts the transaction, reconciles accounts payable, and logs it in your audit trail automatically.</p>
+        <h3>Reports Ready Anytime</h3>
+        <p>Your P&amp;L, balance sheet, and tax-ready books are always current — no accountant required.</p>
       </div>
     </div>
   </section>
@@ -795,9 +832,9 @@
       <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
-          <li><a href="#">AI Bookkeeping</a></li>
-          <li><a href="#">Stablecoin Payments</a></li>
-          <li><a href="#">Finance Intelligence</a></li>
+          <li><a href="#solutions">AI Bookkeeping</a></li>
+          <li><a href="#roadmap">Stablecoin Payments</a></li>
+          <li><a href="#roadmap">Finance Intelligence</a></li>
           <li><a href="#">Integrations</a></li>
         </ul>
       </div>
