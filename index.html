@@ -270,9 +270,27 @@
 
     .check-icon { color: var(--brand-mid); font-weight: 700; flex-shrink: 0; }
 
+    .feature-beta-note {
+      display: inline-block;
+      background: var(--honey);
+      color: var(--brand-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      margin-left: 0.3rem;
+      white-space: nowrap;
+    }
+
     .solutions-grid-single {
       grid-template-columns: 1fr;
       max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .solutions-grid-two {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 860px;
       margin: 0 auto;
     }
 
@@ -562,7 +580,7 @@
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
       gap: 3rem;
       padding-bottom: 3rem;
       border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -623,7 +641,7 @@
     }
 
     @media (max-width: 900px) {
-      .solutions-grid, .props-grid, .reviews-grid, .roadmap-grid { grid-template-columns: 1fr; }
+      .solutions-grid, .solutions-grid-two, .props-grid, .reviews-grid, .roadmap-grid { grid-template-columns: 1fr; }
       .flow-steps { grid-template-columns: repeat(2, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       nav ul { display: none; }
@@ -673,7 +691,7 @@
       <h2 class="section-title">Everything a small or medium<br />business needs to manage its books.</h2>
       <p class="section-sub">Replace your in-house accountant and the manual spreadsheets. Scriply does the work for you.</p>
     </div>
-    <div class="solutions-grid solutions-grid-single">
+    <div class="solutions-grid solutions-grid-two">
       <div class="solution-card">
         <span class="solution-icon">🤖</span>
         <h3>AI Bookkeeping</h3>
@@ -682,6 +700,18 @@
           <li><span class="check-icon">✓</span> AI-powered auto-categorization</li>
           <li><span class="check-icon">✓</span> Real-time ledger sync</li>
           <li><span class="check-icon">✓</span> One-click month-end close</li>
+          <li><span class="check-icon">✓</span> Gmail integration — AI scans your inbox and creates bills automatically <span class="feature-beta-note">(Beta: up to 100 emails)</span></li>
+        </ul>
+      </div>
+      <div class="solution-card">
+        <span class="solution-icon">📁</span>
+        <h3>Document Storage</h3>
+        <p>Keep every receipt, invoice, and financial document in one secure place — always linked to the right transaction.</p>
+        <ul class="solution-features">
+          <li><span class="check-icon">✓</span> Centralized document vault</li>
+          <li><span class="check-icon">✓</span> Auto-attach docs to transactions</li>
+          <li><span class="check-icon">✓</span> Instant search across all records</li>
+          <li><span class="check-icon">✓</span> Audit-ready at any time</li>
         </ul>
       </div>
     </div>
@@ -820,7 +850,7 @@
   <!-- DISCLAIMER -->
   <div class="disclaimer">
     <p>
-      <strong>Beta Disclaimer.</strong> Scriply is currently in beta. The platform is provided free of charge during the beta period. Scriply, Inc. reserves the right to introduce pricing at any time and will provide users with reasonable advance notice prior to any changes. Scriply does not guarantee the completeness, accuracy, or reliability of any financial data, transaction records, or AI-generated outputs. All information provided through the platform is for informational purposes only and should not be relied upon as a substitute for professional accounting, legal, or financial advice. Use of Scriply during the beta period is at your own discretion and risk.
+      <strong>Beta Disclaimer.</strong> Scriply is currently in beta. The platform is provided free of charge during the beta period. Scriply, Inc. reserves the right to introduce pricing at any time and will provide users with reasonable advance notice prior to any changes. During the beta period, Gmail bill extraction is limited to 100 emails per account. Scriply does not guarantee the completeness, accuracy, or reliability of any financial data, transaction records, or AI-generated outputs. All information provided through the platform is for informational purposes only and should not be relied upon as a substitute for professional accounting, legal, or financial advice. Use of Scriply during the beta period is at your own discretion and risk.
     </p>
   </div>
 
@@ -832,18 +862,10 @@
         <p>AI-powered accounting and blockchain payments for modern finance teams.</p>
       </div>
       <div class="footer-col">
-        <h4>Scriply</h4>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
-          <li><a href="#">Blog</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
         <h4>Solutions</h4>
         <ul>
           <li><a href="#solutions">AI Bookkeeping</a></li>
+          <li><a href="#solutions">Document Storage</a></li>
           <li><a href="#roadmap">Stablecoin Payments</a></li>
           <li><a href="#roadmap">Finance Intelligence</a></li>
           <li><a href="#roadmap">Invoice Tokenization</a></li>
@@ -852,7 +874,6 @@
       <div class="footer-col">
         <h4>Connect</h4>
         <ul>
-          <li><a href="#">Contact Sales</a></li>
           <li><a href="#">Support</a></li>
           <li><a href="#">Status</a></li>
           <li><a href="#">Twitter / X</a></li>
@@ -863,7 +884,6 @@
         <ul>
           <li><a href="https://app.scriply.io">Sign In</a></li>
           <li><a href="https://app.scriply.io">Get Started Free</a></li>
-          <li><a href="https://app.scriply.io">Book a Demo</a></li>
           <li><a href="#">Refer a Team</a></li>
         </ul>
       </div>
