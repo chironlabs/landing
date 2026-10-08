@@ -634,6 +634,97 @@
     .footer-legal a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.8rem; }
     .footer-legal a:hover { color: #fff; }
 
+    .solutions-grid + .solutions-grid { margin-top: 1.5rem; }
+
+    /* ── TOKENIZATION ── */
+    .token-facts {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .token-fact {
+      background: var(--cream-light);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+    }
+    .token-fact h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--text); }
+    .token-fact p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+
+    .subsection-title {
+      font-family: var(--serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      text-align: center;
+      color: var(--text);
+      margin: 5rem 0 0.75rem;
+    }
+
+    .report {
+      background: var(--cream);
+      padding: 6rem 5%;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .report-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .payload {
+      background: var(--brand-dark);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .payload-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.6);
+    }
+    .payload-head code { color: var(--honey); font-weight: 600; }
+
+    .payload pre {
+      margin: 0;
+      padding: 1.25rem;
+      overflow-x: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: #d9ece8;
+    }
+
+    .payload-note { padding: 0 1.25rem 1rem; font-size: 0.75rem; color: rgba(255,255,255,0.5); }
+
+    .fields { display: flex; flex-direction: column; gap: 1.25rem; }
+    .fields dt { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; font-weight: 600; color: var(--brand-mid); margin-bottom: 0.2rem; }
+    .fields dd { color: var(--text-mid); font-size: 0.9rem; line-height: 1.6; }
+
+    .not-promised {
+      max-width: 1100px;
+      margin: 3rem auto 0;
+      background: var(--white);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem 1.75rem;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+    .not-promised strong { color: var(--text); }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
@@ -641,7 +732,7 @@
     }
 
     @media (max-width: 900px) {
-      .solutions-grid, .solutions-grid-two, .props-grid, .reviews-grid, .roadmap-grid { grid-template-columns: 1fr; }
+      .solutions-grid, .solutions-grid-two, .props-grid, .reviews-grid, .roadmap-grid, .token-facts, .report-layout { grid-template-columns: 1fr; }
       .flow-steps { grid-template-columns: repeat(2, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
       nav ul { display: none; }
@@ -665,10 +756,10 @@
   <nav>
     <a href="#" class="nav-logo">Scriply</a>
     <ul>
-      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#solutions">Features</a></li>
       <li><a href="#how">How It Works</a></li>
-      <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="#tokenization">Tokenization</a></li>
+      <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="https://app.scriply.io">Sign In</a></li>
       <li><a href="https://app.scriply.io" class="nav-cta">Get Started Free</a></li>
     </ul>
@@ -677,44 +768,288 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-eyebrow">Beta — Free Access Now</div>
-    <h1>Smarter accounting for<br /><em>small &amp; medium</em> businesses.</h1>
-    <p>Scriply is the AI bookkeeper that replaces your in-house accountant — keeping your books accurate and current, automatically.</p>
+    <h1>The back office for<br /><em>small &amp; medium</em> businesses.</h1>
+    <p>Invoices and bills filled in from your paperwork, kept in step with QuickBooks, and paid in USDC. Coming soon: invoices you can turn into tokens, reported on publicly every day.</p>
     <div class="hero-actions">
-      <a href="https://app.scriply.io" class="btn-primary">Explore All Solutions</a>
-      <a href="#how" class="btn-secondary">See How It Works</a>
+      <a href="https://app.scriply.io" class="btn-primary">Get Started Free</a>
+      <a href="#tokenization" class="btn-secondary">How Tokenization Works</a>
     </div>
   </section>
 
   <!-- SOLUTIONS -->
   <section class="solutions" id="solutions">
     <div class="section-header">
-      <span class="section-eyebrow">Solutions</span>
-      <h2 class="section-title">Everything a small or medium<br />business needs to manage its books.</h2>
-      <p class="section-sub">Replace your in-house accountant and the manual spreadsheets. Scriply does the work for you.</p>
+      <span class="section-eyebrow">Features</span>
+      <h2 class="section-title">What Scriply does<br />for your business today.</h2>
+      <p class="section-sub">Everything below is live in the beta.</p>
     </div>
-    <div class="solutions-grid solutions-grid-two">
+    <div class="solutions-grid">
       <div class="solution-card">
-        <span class="solution-icon">🤖</span>
-        <h3>AI Bookkeeping</h3>
-        <p>Automated transaction categorization, reconciliation, and posting. Your chart of accounts, learned by AI.</p>
+        <span class="solution-icon">✍️</span>
+        <h3>Invoices &amp; bills, filled in for you</h3>
+        <p>Describe it, say it out loud, or drop in the paperwork, and Scriply fills in the form for you to check and save.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> AI-powered auto-categorization</li>
-          <li><span class="check-icon">✓</span> Real-time ledger sync</li>
-          <li><span class="check-icon">✓</span> One-click month-end close</li>
-          <li><span class="check-icon">✓</span> Gmail integration — AI scans your inbox and creates bills automatically <span class="feature-beta-note">(Beta: up to 100 emails)</span></li>
+          <li><span class="check-icon">✓</span> Reads purchase orders, delivery notes, timesheets, quotes and received bills</li>
+          <li><span class="check-icon">✓</span> PDFs, Word files and photos, several at once</li>
+          <li><span class="check-icon">✓</span> Invoice numbers given in sequence when you save</li>
+          <li><span class="check-icon">✓</span> Documents kept on the invoice or bill</li>
         </ul>
       </div>
       <div class="solution-card">
-        <span class="solution-icon">📁</span>
-        <h3>Document Storage</h3>
-        <p>Keep every receipt, invoice, and financial document in one secure place — always linked to the right transaction.</p>
+        <span class="solution-icon">📬</span>
+        <h3>Bills from your inbox</h3>
+        <p>Connect Gmail and the bills that arrive by email come into Scriply as drafts, ready for you to complete.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Centralized document vault</li>
-          <li><span class="check-icon">✓</span> Auto-attach docs to transactions</li>
-          <li><span class="check-icon">✓</span> Instant search across all records</li>
-          <li><span class="check-icon">✓</span> Audit-ready at any time</li>
+          <li><span class="check-icon">✓</span> Found in your email automatically</li>
+          <li><span class="check-icon">✓</span> Draft → ready to pay → paid</li>
+          <li><span class="check-icon">✓</span> Filters for overdue, due this week and to pay</li>
         </ul>
       </div>
+      <div class="solution-card">
+        <span class="solution-icon">📚</span>
+        <h3>Works with QuickBooks</h3>
+        <p>Keep your books in QuickBooks Online and Scriply syncs them, or keep them in Scriply. Start from your QuickBooks company in one step.</p>
+        <ul class="solution-features">
+          <li><span class="check-icon">✓</span> Invoices, bills, customers, vendors and accounts synced</li>
+          <li><span class="check-icon">✓</span> Chart of accounts, numbered by range</li>
+          <li><span class="check-icon">✓</span> General ledger for any account and period</li>
+        </ul>
+      </div>
+    </div>
+    <div class="solutions-grid">
+      <div class="solution-card">
+        <span class="solution-icon">💵</span>
+        <h3>Pay bills in USDC</h3>
+        <p>Pay vendors from your business's Solana wallet, several bills in one transaction, with each payment recorded against its bills.</p>
+        <ul class="solution-features">
+          <li><span class="check-icon">✓</span> USDC at 1:1 for US dollar bills</li>
+          <li><span class="check-icon">✓</span> Partial payments, and pay many bills at once</li>
+          <li><span class="check-icon">✓</span> Vendor addresses verified by signature or penny test before use</li>
+        </ul>
+      </div>
+      <div class="solution-card">
+        <span class="solution-icon">🔐</span>
+        <h3>A wallet you control</h3>
+        <p>Create a Solana wallet with your phone number, or connect Phantom, Solflare or another you already use. Scriply never sees its keys and can't move its funds.</p>
+        <ul class="solution-features">
+          <li><span class="check-icon">✓</span> Protected by a backup email and a second factor</li>
+          <li><span class="check-icon">✓</span> Add funds with a card or bank transfer</li>
+          <li><span class="check-icon">✓</span> Send USDC or SOL</li>
+        </ul>
+      </div>
+      <div class="solution-card">
+        <span class="solution-icon">👥</span>
+        <h3>Your team, verified</h3>
+        <p>Invite your team with the right access, and get your business verified once, for payments now, and for tokenization when it launches.</p>
+        <ul class="solution-features">
+          <li><span class="check-icon">✓</span> Admin, member and read-only roles</li>
+          <li><span class="check-icon">✓</span> Business verification for corporations, LLCs, partnerships and sole proprietors</li>
+          <li><span class="check-icon">✓</span> Sanctions screening of businesses, vendors and customers</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stats-grid">
+      <div class="stat-item"><strong>QuickBooks</strong><span>Online books, synced into Scriply</span></div>
+      <div class="stat-item"><strong>3</strong><span>Roles: admin, member, read-only</span></div>
+      <div class="stat-item"><strong>0</strong><span>Wallet keys Scriply holds</span></div>
+      <div class="stat-item"><strong>USDC</strong><span>Bills paid on Solana, at 1:1</span></div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-it-works" id="how">
+    <div class="section-header">
+      <span class="section-eyebrow">How It Works</span>
+      <h2 class="section-title">From paperwork to<br />paid — in one place.</h2>
+      <p class="section-sub">Set up once, then let Scriply do the typing.</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="step-number">1</div>
+        <h3>Start from your books</h3>
+        <p>Sign in with QuickBooks to bring in your company and its books, or start fresh in Scriply. Invite your team.</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-number">2</div>
+        <h3>Let AI fill in the forms</h3>
+        <p>Invoices from your purchase orders and timesheets, bills from what you received and from your inbox. You check and save.</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-number">3</div>
+        <h3>Pay bills in USDC</h3>
+        <p>Pick the bills, approve once in your wallet, and each payment is sent on Solana and recorded against its bills.</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-number">4</div>
+        <h3>Get verified once</h3>
+        <p>Verify your business and the people who own and run it — the step paying bills needs, and invoice tokenization will.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOKENIZATION -->
+  <section class="solutions" id="tokenization">
+    <div class="section-header">
+      <span class="coming-soon-badge">Coming Soon · In testing on Solana devnet</span>
+      <span class="section-eyebrow">Invoice Tokenization</span>
+      <h2 class="section-title">Your invoices,<br />as tokens anyone can check.</h2>
+      <p class="section-sub">Tokenizing an invoice your customer still owes mints tokens for what's outstanding into your business's wallet. Each token stands for one dollar owed, and burns as it's paid.</p>
+    </div>
+    <div class="token-facts">
+      <div class="token-fact">
+        <h3>One token per dollar owed</h3>
+        <p>Each business has its own US dollar receivables token. Its supply always equals what's still owed on the business's tokenized invoices, so a token from one business is never mixed with another's.</p>
+      </div>
+      <div class="token-fact">
+        <h3>Burns as invoices are paid</h3>
+        <p>A payment, credit or write-off burns the same number of tokens. A tokenized invoice is locked against edits until its last token burns, and a change in QuickBooks is held back and disclosed rather than applied silently.</p>
+      </div>
+      <div class="token-fact">
+        <h3>On Solana, with nothing private on-chain</h3>
+        <p>Every mint and burn is recorded on-chain with a fingerprint of the invoice behind it. Nothing on-chain names the business, its customers or its invoices.</p>
+      </div>
+      <div class="token-fact">
+        <h3>Minted to your wallet</h3>
+        <p>Tokens go to a wallet your business proved it controls. They move only between accounts the platform allows, and Scriply, as the issuer, burns them as invoices are paid.</p>
+      </div>
+      <div class="token-fact">
+        <h3>Opt-in, per business</h3>
+        <p>An admin turns tokenizing on after the business is verified: they accept the tokenization terms and choose the wallet. Nothing goes on-chain before that.</p>
+      </div>
+      <div class="token-fact">
+        <h3>A limit on what's out at once</h3>
+        <p>Each business has a cap on how much it can have tokenized at a time. A tokenization over it is refused before anything is minted.</p>
+      </div>
+    </div>
+
+    <h3 class="subsection-title">What we check before an invoice is tokenized.</h3>
+    <p class="section-sub" style="text-align:center">A token is only worth the invoice behind it. Every business and every invoice goes through these steps first.</p>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="step-number">1</div>
+        <h3>We verify the business</h3>
+        <p>A business passes our review before it can tokenize: its owners with a 25% stake or more and a person who controls it are identified, and the business and its people are screened against sanctions lists.</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-number">2</div>
+        <h3>We verify the wallet</h3>
+        <p>Tokens are only minted to a wallet the business proves it controls, by signing with it.</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-number">3</div>
+        <h3>We check every invoice</h3>
+        <p>Each invoice needs a supporting document and a customer who clears sanctions screening. It's compared with every invoice already tokenized, by any business: the same invoice is refused, and one that looks alike waits for a person to review it. An invoice from QuickBooks is read again there before anything is minted.</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-number">4</div>
+        <h3>We report on every token, publicly</h3>
+        <p>Every day we publish each token's report — what's outstanding, how overdue, how concentrated, how fast it's paid, and what we verified — with its fingerprint recorded on-chain.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLATERAL REPORT -->
+  <section class="report" id="report">
+    <div class="section-header">
+      <span class="section-eyebrow">The Daily Report</span>
+      <h2 class="section-title">What a lender sees<br />about every token.</h2>
+      <p class="section-sub">When tokenization launches, each token's latest report will be public, by its address, with no sign-in. It shows the totals, aging and risk, without the invoices or customers behind them.</p>
+    </div>
+    <div class="report-layout">
+      <div class="payload">
+        <div class="payload-head">
+          <code>GET /v1/public/receivables-tokens/{network}/{tokenAddress}</code>
+          <span>Example values</span>
+        </div>
+<pre>{
+  "network": "sol",
+  "tokenAddress": "Ah8cVgnZ8SjPzRtJoCAo26BHBjc4T7xQ6Rsk3apRXdRY",
+  "currency": "USD",
+  "reportId": "usd.2026-10-06",
+  "asOf": "2026-10-06T00:00:00Z",
+  "sha256": "a7eb512136b792d30f616ebe720f5a0c0e079ab99752a26f222faa196f5bd85f",
+  "attestations": { "sol": "3Vj9uCytyrTshBTim1ELkc2RH9cLA9jxUTSyemENPL8oFgfcbBFFL39gsrdLy3z1g4zQaF8tYR1YzZqv8CqiaNhZ" },
+
+  "supply": "184250",
+  "circulatingSupply": "184250",
+  "outstandingUnits": "184250",
+  "burnDebt": "0",
+  "burnDebtOverdue": false,
+  "reconciled": true,
+  "unattributedRatio": "0.012",
+
+  "aging": {
+    "current": "132400",
+    "days1To30": "38150",
+    "days31To60": "9800",
+    "days61To90": "3900",
+    "over90": "0"
+  },
+
+  "assurance": {
+    "kyb": "approved",
+    "kybApprovedAt": "2026-07-14T16:02:11Z",
+    "kybMethod": "manual-review",
+    "checks": [
+      "control-person-identified",
+      "beneficial-owners-identified",
+      "identities-verified",
+      "sanctions-screened",
+      "wallet-verified",
+      "ein-confirmed",
+      "business-registered"
+    ],
+    "accountingSystemShare": "0.92"
+  },
+
+  "risk": {
+    "topCustomerShare": "0.22",
+    "topFiveShare": "0.71",
+    "concentrationIndex": "0.14",
+    "selfIssuedShare": "0.08",
+    "receivableTurnover": "7.9",
+    "daysSalesOutstanding": "46.2",
+    "turnoverPeriodDays": 212,
+    "historyDays": 212,
+    "settledTokenizations": 37,
+    "flags": ["self-issued-invoices"]
+  }
+}</pre>
+        <p class="payload-note">Illustrative report for a made-up business. Units are dollars of invoices still owed.</p>
+      </div>
+      <dl class="fields">
+        <div>
+          <dt>supply · outstandingUnits · reconciled</dt>
+          <dd>Tokens in existence, and dollars still owed on the invoices behind them. They match whenever the report reconciles.</dd>
+        </div>
+        <div>
+          <dt>burnDebt</dt>
+          <dd>Tokens owed for burning that couldn't be burned yet. While it's above zero the token is under-backed, the report says so, and the business can't tokenize anything new.</dd>
+        </div>
+        <div>
+          <dt>aging</dt>
+          <dd>What's owed, by days past due: current, 1–30, 31–60, 61–90 and over 90.</dd>
+        </div>
+        <div>
+          <dt>risk</dt>
+          <dd>How concentrated the customers are, the share of invoices made in Scriply rather than an accounting system, how fast invoices are paid, and flags from a fixed list, such as <code>concentration-high</code> or <code>aging-over-90-high</code>.</dd>
+        </div>
+        <div>
+          <dt>assurance</dt>
+          <dd>What we verified about the business behind the token, such as its EIN and registration, its owners and its wallet, without saying who it is.</dd>
+        </div>
+        <div>
+          <dt>sha256 · attestations</dt>
+          <dd>The fingerprint of the day's full report, and the Solana transaction that recorded it. A lender given the full report hashes it and compares it with the chain.</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="not-promised">
+      <strong>What the report doesn't promise.</strong> We stand behind how each token is made: who could tokenize, what was checked, and that supply matches what's owed. We don't promise that customers will pay or how good the invoices are as credit. Those are for each lender to judge, and the report is there so they can.
     </div>
   </section>
 
@@ -728,151 +1063,44 @@
     <div class="solutions-grid roadmap-grid">
       <div class="solution-card">
         <span class="coming-soon-badge">Coming Soon</span>
-        <span class="solution-icon">💵</span>
-        <h3>Stablecoin Payments</h3>
-        <p>Pay suppliers and contractors in USDC or USDT — no exchange rate surprises, no wire delays, no bank fees.</p>
+        <span class="solution-icon">🏦</span>
+        <h3>Borrow against your invoices</h3>
+        <p>A USDC credit line backed by your tokenized invoices, repaid as your customers pay you.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Sub-10 second global settlement</li>
-          <li><span class="check-icon">✓</span> 1:1 USD value, always</li>
-          <li><span class="check-icon">✓</span> Lower fees than wire transfers</li>
+          <li><span class="check-icon">✓</span> Pledge tokens, draw USDC</li>
+          <li><span class="check-icon">✓</span> Your customers keep paying you as usual</li>
+          <li><span class="check-icon">✓</span> Limit set by what's owed and how current it is</li>
+        </ul>
+      </div>
+      <div class="solution-card">
+        <span class="coming-soon-badge">Coming Soon</span>
+        <span class="solution-icon">🔗</span>
+        <h3>Bank connections</h3>
+        <p>Link your business bank accounts, so deposits are matched to the invoices they pay.</p>
+        <ul class="solution-features">
+          <li><span class="check-icon">✓</span> Bank accounts alongside your wallets</li>
+          <li><span class="check-icon">✓</span> Customer payments matched to invoices</li>
+          <li><span class="check-icon">✓</span> Cash out from USDC to your bank</li>
         </ul>
       </div>
       <div class="solution-card">
         <span class="coming-soon-badge">Coming Soon</span>
         <span class="solution-icon">📊</span>
-        <h3>Finance Intelligence</h3>
-        <p>Real-time P&amp;L, cash flow forecasting, FX exposure analysis, and compliance — built in from day one.</p>
+        <h3>Financial reports</h3>
+        <p>Profit and loss, balance sheet and cash flow, from the books Scriply already keeps.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Live profit &amp; loss dashboard</li>
+          <li><span class="check-icon">✓</span> Live profit &amp; loss</li>
+          <li><span class="check-icon">✓</span> Balance sheet</li>
           <li><span class="check-icon">✓</span> Cash flow forecasting</li>
-          <li><span class="check-icon">✓</span> Automated compliance reporting</li>
         </ul>
-      </div>
-      <div class="solution-card">
-        <span class="coming-soon-badge">Coming Soon</span>
-        <span class="solution-icon">🧾</span>
-        <h3>Invoice Tokenization</h3>
-        <p>Turn outstanding invoices into on-chain tokens — unlocking early payment and financing without waiting on payment terms.</p>
-        <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Convert invoices into tradeable tokens</li>
-          <li><span class="check-icon">✓</span> Early payment &amp; financing options</li>
-          <li><span class="check-icon">✓</span> Transparent, on-chain settlement</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- TOKENIZATION SAFEGUARDS -->
-  <section class="how-it-works" id="tokenization">
-    <div class="section-header">
-      <span class="section-eyebrow">Invoice Tokenization</span>
-      <h2 class="section-title">What we check before<br />an invoice is tokenized.</h2>
-      <p class="section-sub">A token is only worth the invoice behind it. These are the steps every business and every invoice goes through before a token is minted.</p>
-    </div>
-    <div class="flow-steps">
-      <div class="flow-step">
-        <div class="step-number">1</div>
-        <h3>We verify the business</h3>
-        <p>Before it can tokenize, a business passes our review: its owners with a 25% stake or more and a person who controls it are identified and their identities verified, and the business and its people are screened against sanctions lists.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-number">2</div>
-        <h3>We verify the wallet</h3>
-        <p>Tokens are only minted to a wallet the business proves it controls, by signing with it.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-number">3</div>
-        <h3>We check every invoice</h3>
-        <p>Each invoice needs a supporting document and a customer who clears sanctions screening. It's compared with every invoice already tokenized, by any business: the same invoice is refused, and one that looks alike waits for a person to review it. An invoice from the business's accounting system is read again there before anything is minted.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-number">4</div>
-        <h3>We report on every token, publicly</h3>
-        <p>Tokens are burned as invoices are paid, so they always match what's owed, and each business has a limit on what it can have tokenized at once. Every day we publish each token's report — what's outstanding, how overdue, how concentrated, how fast it's paid — with a fingerprint recorded on-chain, so lenders can check it and decide for themselves.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <div class="stats">
-    <div class="stats-grid">
-      <div class="stat-item"><strong>24/7</strong><span>AI bookkeeping, always on</span></div>
-      <div class="stat-item"><strong>Daily</strong><span>Books updated automatically</span></div>
-      <div class="stat-item"><strong>SMB</strong><span>Built for small &amp; medium businesses</span></div>
-      <div class="stat-item"><strong>0</strong><span>Spreadsheets required</span></div>
-    </div>
-  </div>
-
-  <!-- VALUE PROPS -->
-  <section class="value-props">
-    <div class="section-header">
-      <span class="section-eyebrow">Why Scriply</span>
-      <h2 class="section-title">Built for owners who wear<br />every hat.</h2>
-      <p class="section-sub">You didn't start a business to do bookkeeping. Scriply handles the numbers so you can focus on growth.</p>
-    </div>
-    <div class="props-grid">
-      <div class="prop-card">
-        <div class="prop-visual">🤖</div>
-        <div class="prop-content">
-          <h3>Your AI bookkeeper, always on</h3>
-          <p>Scriply learns how your business spends money and keeps your books current — automatically, every day.</p>
-          <a href="https://app.scriply.io" class="prop-link">Explore AI features →</a>
-        </div>
-      </div>
-      <div class="prop-card">
-        <div class="prop-visual">💼</div>
-        <div class="prop-content">
-          <h3>Replace your in-house accountant</h3>
-          <p>Scriply handles categorization, reconciliation, and reporting — the day-to-day work an in-house accountant would do, at a fraction of the cost.</p>
-          <a href="#solutions" class="prop-link">See what's included →</a>
-        </div>
-      </div>
-      <div class="prop-card">
-        <div class="prop-visual">🌍</div>
-        <div class="prop-content">
-          <h3>Tax-ready books, year-round</h3>
-          <p>Every transaction categorized and recorded so you're never scrambling at tax time — and never need to hire a bookkeeper.</p>
-          <a href="https://app.scriply.io" class="prop-link">View global coverage →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="how-it-works" id="how">
-    <div class="section-header">
-      <span class="section-eyebrow">How It Works</span>
-      <h2 class="section-title">From transaction to<br />reconciled books — automatically.</h2>
-      <p class="section-sub">Scriply replaces the manual work an in-house accountant would do, every day.</p>
-    </div>
-    <div class="flow-steps">
-      <div class="flow-step">
-        <div class="step-number">1</div>
-        <h3>Connect Your Accounts</h3>
-        <p>Link your bank accounts, cards, and payment processors to Scriply in minutes.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-number">2</div>
-        <h3>AI Categorizes Transactions</h3>
-        <p>Scriply's AI reads every transaction and assigns it to the right account in your chart of accounts.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-number">3</div>
-        <h3>Books Reconciled Automatically</h3>
-        <p>Transactions are matched, reconciled, and posted to your ledger in real time.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-number">4</div>
-        <h3>Reports Ready Anytime</h3>
-        <p>Your P&amp;L, balance sheet, and tax-ready books are always current — no accountant required.</p>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
   <section class="cta-section">
-    <h2>Stop doing<br />your own books.</h2>
-    <p>Let Scriply handle the accounting while you run your business. Free during beta — no credit card needed.</p>
+    <h2>Stop typing<br />your own books.</h2>
+    <p>Let Scriply fill in your invoices and bills, pay your vendors, and put your receivables to work. Free during beta — no credit card needed.</p>
     <div class="cta-actions">
       <a href="https://app.scriply.io" class="btn-white">Open Scriply →</a>
       <a href="https://app.scriply.io" class="btn-white-outline">Book a Demo</a>
@@ -882,7 +1110,7 @@
   <!-- DISCLAIMER -->
   <div class="disclaimer">
     <p>
-      <strong>Beta Disclaimer.</strong> Scriply is currently in beta. The platform is provided free of charge during the beta period. Scriply, Inc. reserves the right to introduce pricing at any time and will provide users with reasonable advance notice prior to any changes. During the beta period, Gmail bill extraction is limited to 100 emails per account. Scriply does not guarantee the completeness, accuracy, or reliability of any financial data, transaction records, or AI-generated outputs. All information provided through the platform is for informational purposes only and should not be relied upon as a substitute for professional accounting, legal, or financial advice. Use of Scriply during the beta period is at your own discretion and risk.
+      <strong>Beta Disclaimer.</strong> Scriply is currently in beta. The platform is provided free of charge during the beta period. Scriply, Inc. reserves the right to introduce pricing at any time and will provide users with reasonable advance notice prior to any changes. During the beta period, Gmail bill extraction is limited to 100 emails per account. Scriply does not guarantee the completeness, accuracy, or reliability of any financial data, transaction records, or AI-generated outputs. All information provided through the platform is for informational purposes only and should not be relied upon as a substitute for professional accounting, legal, or financial advice. Receivables tokens represent invoices as described in the tokenization terms; Scriply does not represent that any invoice will be paid or the credit quality of any receivable. Use of Scriply during the beta period is at your own discretion and risk.
     </p>
   </div>
 
@@ -891,16 +1119,16 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="footer-logo">Scriply</span>
-        <p>AI-powered accounting and blockchain payments for modern finance teams.</p>
+        <p>AI bookkeeping and USDC bill pay for small and medium businesses, with invoice tokenization on the way.</p>
       </div>
       <div class="footer-col">
-        <h4>Solutions</h4>
+        <h4>Features</h4>
         <ul>
-          <li><a href="#solutions">AI Bookkeeping</a></li>
-          <li><a href="#solutions">Document Storage</a></li>
-          <li><a href="#roadmap">Stablecoin Payments</a></li>
-          <li><a href="#roadmap">Finance Intelligence</a></li>
-          <li><a href="#roadmap">Invoice Tokenization</a></li>
+          <li><a href="#solutions">Invoices &amp; Bills</a></li>
+          <li><a href="#solutions">QuickBooks Sync</a></li>
+          <li><a href="#solutions">USDC Bill Pay</a></li>
+          <li><a href="#tokenization">Invoice Tokenization</a></li>
+          <li><a href="#report">Daily Token Report</a></li>
         </ul>
       </div>
       <div class="footer-col">
