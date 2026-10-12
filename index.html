@@ -309,6 +309,51 @@
       grid-template-columns: repeat(3, 1fr);
     }
 
+    /* ── DEMOS ── */
+    .demos {
+      padding: 6rem 5%;
+      background: var(--cream-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    /* Each demo takes up to 560px, side by side when there's room */
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 560px));
+      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .demo-card {
+      background: var(--white);
+      border: 1.5px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .demo-card iframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border: 0;
+    }
+
+    .demo-card figcaption { padding: 1.25rem 1.5rem 1.5rem; }
+
+    .demo-card h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+
+    .demo-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.65;
+    }
+
     .coming-soon-badge {
       display: inline-block;
       background: var(--brand-light);
@@ -757,6 +802,7 @@
   <nav>
     <a href="#" class="brand-lockup nav-logo"><svg width="28" height="28" aria-hidden="true"><use href="#coin"/></svg>Scriply</a>
     <ul>
+      <li><a href="#demos">Demos</a></li>
       <li><a href="#solutions">Features</a></li>
       <li><a href="#how">How It Works</a></li>
       <li><a href="#tokenization">Tokenization</a></li>
@@ -774,6 +820,24 @@
     <div class="hero-actions">
       <a href="https://app.scriply.io" class="btn-primary">Get Started Free</a>
       <a href="#tokenization" class="btn-secondary">How Tokenization Works</a>
+    </div>
+  </section>
+
+  <!-- DEMOS -->
+  <section class="demos" id="demos">
+    <div class="section-header">
+      <span class="section-eyebrow">Demos</span>
+      <h2 class="section-title">See Scriply at work.</h2>
+      <p class="section-sub">Short walkthroughs of the product, recorded in the app.</p>
+    </div>
+    <div class="demos-grid">
+      <figure class="demo-card">
+        <iframe src="https://www.loom.com/embed/6c1cb89d6f544f93a5ef069754896e89" title="Invoice tokenization demo" loading="lazy" allowfullscreen></iframe>
+        <figcaption>
+          <h3>Invoice tokenization</h3>
+          <p>Turning tokenization on after verification, tokenizing an invoice and reading its memo on Solana, and the daily report on every token. 5 min.</p>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
