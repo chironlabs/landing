@@ -153,6 +153,14 @@
 
     .hero-actions {
       display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* The secondary buttons, side by side under Get Started Free */
+    .hero-actions-secondary {
+      display: flex;
       gap: 1rem;
       justify-content: center;
       flex-wrap: wrap;
@@ -819,7 +827,10 @@
     <p>Invoices and bills filled in from your paperwork, kept in step with QuickBooks, and paid in USDC. Coming soon: invoices you can turn into tokens, reported on publicly every day.</p>
     <div class="hero-actions">
       <a href="https://app.scriply.io" class="btn-primary">Get Started Free</a>
-      <a href="#tokenization" class="btn-secondary">How Tokenization Works</a>
+      <div class="hero-actions-secondary">
+        <a href="https://app.scriply.io/try" class="btn-secondary">Try It Out in Sandbox</a>
+        <a href="#tokenization" class="btn-secondary">How Tokenization Works</a>
+      </div>
     </div>
   </section>
 
