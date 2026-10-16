@@ -4,7 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scriply — AI Accounting Meets Blockchain</title>
+  <meta name="description" content="The back office for small and medium businesses: invoices and bills filled in from your paperwork, kept in step with QuickBooks, and paid in USDC. Free during beta.">
+  <meta name="theme-color" content="#013e3f">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.scriply.io/">
+  <meta property="og:site_name" content="Scriply">
+  <meta property="og:title" content="Scriply — The back office for small &amp; medium businesses">
+  <meta property="og:description" content="Invoices and bills filled in from your paperwork, kept in step with QuickBooks, and paid in USDC. Free during beta.">
+  <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&family=Newsreader:opsz@6..72&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -23,7 +32,7 @@
       --cream-light: #f7f4ef;
       --text: #002525;
       --text-mid: #242424;
-      --muted: #767676;
+      --muted: #666666;
       --border: #d8d8d8;
       --border-light: #e4edec;
       --radius: 10px;
@@ -33,6 +42,25 @@
     }
 
     html { scroll-behavior: smooth; }
+
+    /* Clears the sticky nav when jumping to a section */
+    [id] { scroll-margin-top: 5rem; }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -3rem;
+      z-index: 300;
+      background: var(--brand);
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    .hero h1, .section-title, .subsection-title, .cta-section h2 { text-wrap: balance; }
 
     body {
       font-family: var(--sans);
@@ -106,6 +134,20 @@
       transition: background 0.2s !important;
     }
     .nav-cta:hover { background: var(--brand-dark) !important; }
+
+    /* Opens the links on phones, where they don't fit in the bar */
+    .nav-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--brand);
+      cursor: pointer;
+    }
 
     /* ── HERO ── */
     .hero {
@@ -515,7 +557,7 @@
       margin: 0 auto 1.25rem;
     }
 
-    .flow-step h3 { font-family: var(--serif); font-size: 1rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--text); }
+    .flow-step h3, .flow-step h4 { font-family: var(--serif); font-size: 1rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--text); }
     .flow-step p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
 
     /* ── TESTIMONIALS ── */
@@ -649,8 +691,8 @@
       max-width: 220px;
     }
 
-    .footer-col h4 {
-      color: rgba(255,255,255,0.4);
+    .footer-col h2 {
+      color: rgba(255,255,255,0.6);
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.1em;
@@ -740,7 +782,7 @@
       font-size: 0.78rem;
       color: rgba(255,255,255,0.6);
     }
-    .payload-head code { color: var(--honey); font-weight: 600; }
+    .payload-head code { color: var(--honey); font-weight: 600; overflow-wrap: anywhere; }
 
     .payload pre {
       margin: 0;
@@ -781,12 +823,35 @@
       .solutions-grid, .solutions-grid-two, .props-grid, .reviews-grid, .roadmap-grid, .token-facts, .report-layout { grid-template-columns: 1fr; }
       .flow-steps { grid-template-columns: repeat(2, 1fr); }
       .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      nav ul { display: none; }
+      .nav-toggle { display: inline-flex; }
+      nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 0.5rem 5% 1rem;
+        background: var(--white);
+        border-bottom: 1px solid var(--border-light);
+        box-shadow: 0 8px 24px rgba(1,62,63,0.08);
+      }
+      nav.is-open ul { display: flex; }
+      nav ul a { display: block; padding: 0.75rem 0; font-size: 1rem; }
+      nav ul li:last-child { margin-top: 0.5rem; }
+      .nav-cta { text-align: center; }
     }
 
     @media (max-width: 600px) {
       .flow-steps { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn-primary:hover, .btn-secondary:hover, .btn-white:hover, .solution-card:hover, .prop-card:hover { transform: none; }
     }
   </style>
 </head>
@@ -800,16 +865,21 @@
     </symbol>
   </svg>
 
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <!-- BETA BANNER -->
   <div class="beta-banner">
     Now in Beta — <strong>Free during our launch period.</strong> Pricing introduced with advance notice.
-    <a href="https://app.scriply.io">Get started →</a>
+    <a href="https://app.scriply.io">Get Started →</a>
   </div>
 
   <!-- NAV -->
-  <nav>
-    <a href="#" class="brand-lockup nav-logo"><svg width="28" height="28" aria-hidden="true"><use href="#coin"/></svg>Scriply</a>
-    <ul>
+  <nav aria-label="Main">
+    <a href="#" class="brand-lockup nav-logo" translate="no"><svg width="28" height="28" aria-hidden="true"><use href="#coin"/></svg><span translate="no">Scriply</span></a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <ul id="nav-links">
       <li><a href="#demos">Demos</a></li>
       <li><a href="#solutions">Features</a></li>
       <li><a href="#how">How It Works</a></li>
@@ -820,11 +890,12 @@
     </ul>
   </nav>
 
+  <main id="main">
   <!-- HERO -->
   <section class="hero">
     <div class="hero-eyebrow">Beta — Free Access Now</div>
     <h1>The back office for<br /><em>small &amp; medium</em> businesses.</h1>
-    <p>Invoices and bills filled in from your paperwork, kept in step with QuickBooks, and paid in USDC. Coming soon: invoices you can turn into tokens, reported on publicly every day.</p>
+    <p>Invoices and bills filled in from your paperwork, kept in step with <span translate="no">QuickBooks</span>, and paid in <span translate="no">USDC</span>. Coming soon: invoices you can turn into tokens, reported on publicly every day.</p>
     <div class="hero-actions">
       <a href="https://app.scriply.io" class="btn-primary">Get Started Free</a>
       <div class="hero-actions-secondary">
@@ -838,7 +909,7 @@
   <section class="demos" id="demos">
     <div class="section-header">
       <span class="section-eyebrow">Demos</span>
-      <h2 class="section-title">See Scriply at work.</h2>
+      <h2 class="section-title">See <span translate="no">Scriply</span> at work.</h2>
       <p class="section-sub">Short walkthroughs of the product, recorded in the app.</p>
     </div>
     <div class="demos-grid">
@@ -846,7 +917,7 @@
         <iframe src="https://www.loom.com/embed/6c1cb89d6f544f93a5ef069754896e89" title="Invoice tokenization demo" loading="lazy" allowfullscreen></iframe>
         <figcaption>
           <h3>Invoice tokenization</h3>
-          <p>Turning tokenization on after verification, tokenizing an invoice and reading its memo on Solana, and the daily report on every token. 5 min.</p>
+          <p>Turning tokenization on after verification, tokenizing an invoice and reading its memo on <span translate="no">Solana</span>, and the daily report on every token. 5 min.</p>
         </figcaption>
       </figure>
     </div>
@@ -856,71 +927,71 @@
   <section class="solutions" id="solutions">
     <div class="section-header">
       <span class="section-eyebrow">Features</span>
-      <h2 class="section-title">What Scriply does<br />for your business today.</h2>
+      <h2 class="section-title">What <span translate="no">Scriply</span> does<br />for your business today.</h2>
       <p class="section-sub">Everything below is live in the beta.</p>
     </div>
     <div class="solutions-grid">
       <div class="solution-card">
-        <span class="solution-icon">✍️</span>
+        <span class="solution-icon" aria-hidden="true">✍️</span>
         <h3>Invoices &amp; bills, filled in for you</h3>
-        <p>Describe it, say it out loud, or drop in the paperwork, and Scriply fills in the form for you to check and save.</p>
+        <p>Describe it, say it out loud, or drop in the paperwork, and <span translate="no">Scriply</span> fills in the form for you to check and save.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Reads purchase orders, delivery notes, timesheets, quotes and received bills</li>
-          <li><span class="check-icon">✓</span> PDFs, Word files and photos, several at once</li>
-          <li><span class="check-icon">✓</span> Invoice numbers given in sequence when you save</li>
-          <li><span class="check-icon">✓</span> Documents kept on the invoice or bill</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Reads purchase orders, delivery notes, timesheets, quotes and received bills</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> PDFs, Word files and photos, several at once</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Invoice numbers given in sequence when you save</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Documents kept on the invoice or bill</li>
         </ul>
       </div>
       <div class="solution-card">
-        <span class="solution-icon">📬</span>
+        <span class="solution-icon" aria-hidden="true">📬</span>
         <h3>Bills from your inbox</h3>
-        <p>Connect Gmail and the bills that arrive by email come into Scriply as drafts, ready for you to complete.</p>
+        <p>Connect Gmail and the bills that arrive by email come into <span translate="no">Scriply</span> as drafts, ready for you to complete.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Found in your email automatically</li>
-          <li><span class="check-icon">✓</span> Draft → ready to pay → paid</li>
-          <li><span class="check-icon">✓</span> Filters for overdue, due this week and to pay</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Found in your email automatically</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Draft → ready to pay → paid</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Filters for overdue, due this week and to pay</li>
         </ul>
       </div>
       <div class="solution-card">
-        <span class="solution-icon">📚</span>
-        <h3>Works with QuickBooks</h3>
-        <p>Keep your books in QuickBooks Online and Scriply syncs them, or keep them in Scriply. Start from your QuickBooks company in one step.</p>
+        <span class="solution-icon" aria-hidden="true">📚</span>
+        <h3>Works with <span translate="no">QuickBooks</span></h3>
+        <p>Keep your books in <span translate="no">QuickBooks Online</span> and <span translate="no">Scriply</span> syncs them, or keep them in <span translate="no">Scriply</span>. Start from your <span translate="no">QuickBooks</span> company in one step.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Invoices, bills, customers, vendors and accounts synced</li>
-          <li><span class="check-icon">✓</span> Chart of accounts, numbered by range</li>
-          <li><span class="check-icon">✓</span> General ledger for any account and period</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Invoices, bills, customers, vendors and accounts synced</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Chart of accounts, numbered by range</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> General ledger for any account and period</li>
         </ul>
       </div>
     </div>
     <div class="solutions-grid">
       <div class="solution-card">
-        <span class="solution-icon">💵</span>
-        <h3>Pay bills in USDC</h3>
-        <p>Pay vendors from your business's Solana wallet, several bills in one transaction, with each payment recorded against its bills.</p>
+        <span class="solution-icon" aria-hidden="true">💵</span>
+        <h3>Pay bills in <span translate="no">USDC</span></h3>
+        <p>Pay vendors from your business's <span translate="no">Solana</span> wallet, several bills in one transaction, with each payment recorded against its bills.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> USDC at 1:1 for US dollar bills</li>
-          <li><span class="check-icon">✓</span> Partial payments, and pay many bills at once</li>
-          <li><span class="check-icon">✓</span> Vendor addresses verified by signature or penny test before use</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> <span translate="no">USDC</span> at 1:1 for US dollar bills</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Partial payments, and pay many bills at once</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Vendor addresses verified by signature or penny test before use</li>
         </ul>
       </div>
       <div class="solution-card">
-        <span class="solution-icon">🔐</span>
+        <span class="solution-icon" aria-hidden="true">🔐</span>
         <h3>A wallet you control</h3>
-        <p>Create a Solana wallet with your phone number, or connect Phantom, Solflare or another you already use. Scriply never sees its keys and can't move its funds.</p>
+        <p>Create a <span translate="no">Solana</span> wallet with your phone number, or connect Phantom, Solflare or another you already use. <span translate="no">Scriply</span> never sees its keys and can't move its funds.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Protected by a backup email and a second factor</li>
-          <li><span class="check-icon">✓</span> Add funds with a card or bank transfer</li>
-          <li><span class="check-icon">✓</span> Send USDC or SOL</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Protected by a backup email and a second factor</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Add funds with a card or bank transfer</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Send <span translate="no">USDC</span> or SOL</li>
         </ul>
       </div>
       <div class="solution-card">
-        <span class="solution-icon">👥</span>
+        <span class="solution-icon" aria-hidden="true">👥</span>
         <h3>Your team, verified</h3>
         <p>Invite your team with the right access, and get your business verified once, for payments now, and for tokenization when it launches.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Admin, member and read-only roles</li>
-          <li><span class="check-icon">✓</span> Business verification for corporations, LLCs, partnerships and sole proprietors</li>
-          <li><span class="check-icon">✓</span> Sanctions screening of businesses, vendors and customers</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Admin, member and read-only roles</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Business verification for corporations, LLCs, partnerships and sole proprietors</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Sanctions screening of businesses, vendors and customers</li>
         </ul>
       </div>
     </div>
@@ -929,10 +1000,10 @@
   <!-- STATS -->
   <div class="stats">
     <div class="stats-grid">
-      <div class="stat-item"><strong>QuickBooks</strong><span>Online books, synced into Scriply</span></div>
+      <div class="stat-item"><strong><span translate="no">QuickBooks</span></strong><span>Online books, synced into <span translate="no">Scriply</span></span></div>
       <div class="stat-item"><strong>3</strong><span>Roles: admin, member, read-only</span></div>
-      <div class="stat-item"><strong>0</strong><span>Wallet keys Scriply holds</span></div>
-      <div class="stat-item"><strong>USDC</strong><span>Bills paid on Solana, at 1:1</span></div>
+      <div class="stat-item"><strong>0</strong><span>Wallet keys <span translate="no">Scriply</span> holds</span></div>
+      <div class="stat-item"><strong><span translate="no">USDC</span></strong><span>Bills paid on <span translate="no">Solana</span>, at 1:1</span></div>
     </div>
   </div>
 
@@ -941,13 +1012,13 @@
     <div class="section-header">
       <span class="section-eyebrow">How It Works</span>
       <h2 class="section-title">From paperwork to<br />paid — in one place.</h2>
-      <p class="section-sub">Set up once, then let Scriply do the typing.</p>
+      <p class="section-sub">Set up once, then let <span translate="no">Scriply</span> do the typing.</p>
     </div>
     <div class="flow-steps">
       <div class="flow-step">
         <div class="step-number">1</div>
         <h3>Start from your books</h3>
-        <p>Sign in with QuickBooks to bring in your company and its books, or start fresh in Scriply. Invite your team.</p>
+        <p>Sign in with <span translate="no">QuickBooks</span> to bring in your company and its books, or start fresh in <span translate="no">Scriply</span>. Invite your team.</p>
       </div>
       <div class="flow-step">
         <div class="step-number">2</div>
@@ -956,8 +1027,8 @@
       </div>
       <div class="flow-step">
         <div class="step-number">3</div>
-        <h3>Pay bills in USDC</h3>
-        <p>Pick the bills, approve once in your wallet, and each payment is sent on Solana and recorded against its bills.</p>
+        <h3>Pay bills in <span translate="no">USDC</span></h3>
+        <p>Pick the bills, approve once in your wallet, and each payment is sent on <span translate="no">Solana</span> and recorded against its bills.</p>
       </div>
       <div class="flow-step">
         <div class="step-number">4</div>
@@ -970,7 +1041,7 @@
   <!-- TOKENIZATION -->
   <section class="solutions" id="tokenization">
     <div class="section-header">
-      <span class="coming-soon-badge">Coming Soon · In testing on Solana devnet</span>
+      <span class="coming-soon-badge">Coming Soon · In testing on <span translate="no">Solana</span> devnet</span>
       <span class="section-eyebrow">Invoice Tokenization</span>
       <h2 class="section-title">Your invoices,<br />as tokens anyone can check.</h2>
       <p class="section-sub">Tokenizing an invoice your customer still owes mints tokens for what's outstanding into your business's wallet. Each token stands for one dollar owed, and burns as it's paid.</p>
@@ -982,15 +1053,15 @@
       </div>
       <div class="token-fact">
         <h3>Burns as invoices are paid</h3>
-        <p>A payment, credit or write-off burns the same number of tokens. A tokenized invoice is locked against edits until its last token burns, and a change in QuickBooks is held back and disclosed rather than applied silently.</p>
+        <p>A payment, credit or write-off burns the same number of tokens. A tokenized invoice is locked against edits until its last token burns, and a change in <span translate="no">QuickBooks</span> is held back and disclosed rather than applied silently.</p>
       </div>
       <div class="token-fact">
-        <h3>On Solana, with nothing private on-chain</h3>
+        <h3>On <span translate="no">Solana</span>, with nothing private on-chain</h3>
         <p>Every mint and burn is recorded on-chain with a fingerprint of the invoice behind it. Nothing on-chain names the business, its customers or its invoices.</p>
       </div>
       <div class="token-fact">
         <h3>Minted to your wallet</h3>
-        <p>Tokens go to a wallet your business proved it controls. They move only between accounts the platform allows, and Scriply, as the issuer, burns them as invoices are paid.</p>
+        <p>Tokens go to a wallet your business proved it controls. They move only between accounts the platform allows, and <span translate="no">Scriply</span>, as the issuer, burns them as invoices are paid.</p>
       </div>
       <div class="token-fact">
         <h3>Opt-in, per business</h3>
@@ -1007,22 +1078,22 @@
     <div class="flow-steps">
       <div class="flow-step">
         <div class="step-number">1</div>
-        <h3>We verify the business</h3>
+        <h4>We verify the business</h4>
         <p>A business passes our review before it can tokenize: its owners with a 25% stake or more and a person who controls it are identified, and the business and its people are screened against sanctions lists.</p>
       </div>
       <div class="flow-step">
         <div class="step-number">2</div>
-        <h3>We verify the wallet</h3>
+        <h4>We verify the wallet</h4>
         <p>Tokens are only minted to a wallet the business proves it controls, by signing with it.</p>
       </div>
       <div class="flow-step">
         <div class="step-number">3</div>
-        <h3>We check every invoice</h3>
-        <p>Each invoice needs a supporting document and a customer who clears sanctions screening. It's compared with every invoice already tokenized, by any business: the same invoice is refused, and one that looks alike waits for a person to review it. An invoice from QuickBooks is read again there before anything is minted.</p>
+        <h4>We check every invoice</h4>
+        <p>Each invoice needs a supporting document and a customer who clears sanctions screening. It's compared with every invoice already tokenized, by any business: the same invoice is refused, and one that looks alike waits for a person to review it. An invoice from <span translate="no">QuickBooks</span> is read again there before anything is minted.</p>
       </div>
       <div class="flow-step">
         <div class="step-number">4</div>
-        <h3>We report on every token, publicly</h3>
+        <h4>We report on every token, publicly</h4>
         <p>Every day we publish each token's report — what's outstanding, how overdue, how concentrated, how fast it's paid, and what we verified — with its fingerprint recorded on-chain.</p>
       </div>
     </div>
@@ -1112,7 +1183,7 @@
         </div>
         <div>
           <dt>risk</dt>
-          <dd>How concentrated the customers are, the share of invoices made in Scriply rather than an accounting system, how fast invoices are paid, and flags from a fixed list, such as <code>concentration-high</code> or <code>aging-over-90-high</code>.</dd>
+          <dd>How concentrated the customers are, the share of invoices made in <span translate="no">Scriply</span> rather than an accounting system, how fast invoices are paid, and flags from a fixed list, such as <code>concentration-high</code> or <code>aging-over-90-high</code>.</dd>
         </div>
         <div>
           <dt>assurance</dt>
@@ -1120,7 +1191,7 @@
         </div>
         <div>
           <dt>sha256 · attestations</dt>
-          <dd>The fingerprint of the day's full report, and the Solana transaction that recorded it. A lender given the full report hashes it and compares it with the chain.</dd>
+          <dd>The fingerprint of the day's full report, and the <span translate="no">Solana</span> transaction that recorded it. A lender given the full report hashes it and compares it with the chain.</dd>
         </div>
       </dl>
     </div>
@@ -1139,35 +1210,35 @@
     <div class="solutions-grid roadmap-grid">
       <div class="solution-card">
         <span class="coming-soon-badge">Coming Soon</span>
-        <span class="solution-icon">🏦</span>
+        <span class="solution-icon" aria-hidden="true">🏦</span>
         <h3>Borrow against your invoices</h3>
-        <p>A USDC credit line backed by your tokenized invoices, repaid as your customers pay you.</p>
+        <p>A <span translate="no">USDC</span> credit line backed by your tokenized invoices, repaid as your customers pay you.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Pledge tokens, draw USDC</li>
-          <li><span class="check-icon">✓</span> Your customers keep paying you as usual</li>
-          <li><span class="check-icon">✓</span> Limit set by what's owed and how current it is</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Pledge tokens, draw <span translate="no">USDC</span></li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Your customers keep paying you as usual</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Limit set by what's owed and how current it is</li>
         </ul>
       </div>
       <div class="solution-card">
         <span class="coming-soon-badge">Coming Soon</span>
-        <span class="solution-icon">🔗</span>
+        <span class="solution-icon" aria-hidden="true">🔗</span>
         <h3>Bank connections</h3>
         <p>Link your business bank accounts, so deposits are matched to the invoices they pay.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Bank accounts alongside your wallets</li>
-          <li><span class="check-icon">✓</span> Customer payments matched to invoices</li>
-          <li><span class="check-icon">✓</span> Cash out from USDC to your bank</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Bank accounts alongside your wallets</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Customer payments matched to invoices</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Cash out from <span translate="no">USDC</span> to your bank</li>
         </ul>
       </div>
       <div class="solution-card">
         <span class="coming-soon-badge">Coming Soon</span>
-        <span class="solution-icon">📊</span>
+        <span class="solution-icon" aria-hidden="true">📊</span>
         <h3>Financial reports</h3>
-        <p>Profit and loss, balance sheet and cash flow, from the books Scriply already keeps.</p>
+        <p>Profit and loss, balance sheet and cash flow, from the books <span translate="no">Scriply</span> already keeps.</p>
         <ul class="solution-features">
-          <li><span class="check-icon">✓</span> Live profit &amp; loss</li>
-          <li><span class="check-icon">✓</span> Balance sheet</li>
-          <li><span class="check-icon">✓</span> Cash flow forecasting</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Live profit &amp; loss</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Balance sheet</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Cash flow forecasting</li>
         </ul>
       </div>
     </div>
@@ -1176,16 +1247,17 @@
   <!-- CTA -->
   <section class="cta-section">
     <h2>Stop typing<br />your own books.</h2>
-    <p>Let Scriply fill in your invoices and bills, pay your vendors, and put your receivables to work. Free during beta — no credit card needed.</p>
+    <p>Let <span translate="no">Scriply</span> fill in your invoices and bills, pay your vendors, and put your receivables to work. Free during beta — no credit card needed.</p>
     <div class="cta-actions">
-      <a href="https://app.scriply.io" class="btn-white">Open Scriply →</a>
+      <a href="https://app.scriply.io" class="btn-white">Open <span translate="no">Scriply</span> →</a>
     </div>
   </section>
+  </main>
 
   <!-- DISCLAIMER -->
   <div class="disclaimer">
     <p>
-      <strong>Beta Disclaimer.</strong> Scriply is currently in beta. The platform is provided free of charge during the beta period. Scriply, Inc. reserves the right to introduce pricing at any time and will provide users with reasonable advance notice prior to any changes. During the beta period, Gmail bill extraction is limited to 100 emails per account. Scriply does not guarantee the completeness, accuracy, or reliability of any financial data, transaction records, or AI-generated outputs. All information provided through the platform is for informational purposes only and should not be relied upon as a substitute for professional accounting, legal, or financial advice. Receivables tokens represent invoices as described in the tokenization terms; Scriply does not represent that any invoice will be paid or the credit quality of any receivable. Use of Scriply during the beta period is at your own discretion and risk.
+      <strong>Beta Disclaimer.</strong> <span translate="no">Scriply</span> is currently in beta. The platform is provided free of charge during the beta period. <span translate="no">Scriply</span>, Inc. reserves the right to introduce pricing at any time and will provide users with reasonable advance notice prior to any changes. During the beta period, Gmail bill extraction is limited to 100 emails per account. <span translate="no">Scriply</span> does not guarantee the completeness, accuracy, or reliability of any financial data, transaction records, or AI-generated outputs. All information provided through the platform is for informational purposes only and should not be relied upon as a substitute for professional accounting, legal, or financial advice. Receivables tokens represent invoices as described in the tokenization terms; <span translate="no">Scriply</span> does not represent that any invoice will be paid or the credit quality of any receivable. Use of <span translate="no">Scriply</span> during the beta period is at your own discretion and risk.
     </p>
   </div>
 
@@ -1193,21 +1265,21 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <span class="brand-lockup footer-logo"><svg width="30" height="30" aria-hidden="true"><use href="#coin"/></svg>Scriply</span>
-        <p>AI bookkeeping and USDC bill pay for small and medium businesses, with invoice tokenization on the way.</p>
+        <span class="brand-lockup footer-logo" translate="no"><svg width="30" height="30" aria-hidden="true"><use href="#coin"/></svg><span translate="no">Scriply</span></span>
+        <p>AI bookkeeping and <span translate="no">USDC</span> bill pay for small and medium businesses, with invoice tokenization on the way.</p>
       </div>
       <div class="footer-col">
-        <h4>Features</h4>
+        <h2>Features</h2>
         <ul>
           <li><a href="#solutions">Invoices &amp; Bills</a></li>
-          <li><a href="#solutions">QuickBooks Sync</a></li>
-          <li><a href="#solutions">USDC Bill Pay</a></li>
+          <li><a href="#solutions"><span translate="no">QuickBooks</span> Sync</a></li>
+          <li><a href="#solutions"><span translate="no">USDC</span> Bill Pay</a></li>
           <li><a href="#tokenization">Invoice Tokenization</a></li>
           <li><a href="#report">Daily Token Report</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Connect</h4>
+        <h2>Connect</h2>
         <ul>
           <li><a href="#">Support</a></li>
           <li><a href="#">Status</a></li>
@@ -1215,7 +1287,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Members</h4>
+        <h2>Members</h2>
         <ul>
           <li><a href="https://app.scriply.io">Sign In</a></li>
           <li><a href="https://app.scriply.io">Get Started Free</a></li>
@@ -1224,14 +1296,28 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Scriply, Inc. All rights reserved.</p>
+      <p>© 2026 <span translate="no">Scriply</span>, Inc. All rights reserved.</p>
       <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
+        <a href="https://app.scriply.io/privacy">Privacy Policy</a>
+        <a href="https://app.scriply.io/terms">Terms of Service</a>
         <a href="#">Cookie Policy</a>
       </div>
     </div>
   </footer>
 
+  <script>
+    // The phone menu: opens and closes the links, and closes once one is chosen.
+    (function () {
+      var nav = document.querySelector('nav');
+      var toggle = nav.querySelector('.nav-toggle');
+      function setOpen(isOpen) {
+        nav.classList.toggle('is-open', isOpen);
+        toggle.setAttribute('aria-expanded', String(isOpen));
+      }
+      toggle.addEventListener('click', function () { setOpen(!nav.classList.contains('is-open')); });
+      nav.querySelectorAll('ul a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('is-open')) { setOpen(false); toggle.focus(); } });
+    })();
+  </script>
 </body>
 </html>
