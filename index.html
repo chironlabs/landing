@@ -4,13 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scriply — AI Accounting Meets Blockchain</title>
-  <meta name="description" content="The back office for small and medium businesses: invoices and bills filled in from your paperwork, kept in step with QuickBooks, and paid in USDC. Free during beta.">
+  <meta name="description" content="The back office for small and medium businesses: invoices and bills filled in from your paperwork, kept in step with QuickBooks, and paid in USDC. Free for freelancers and small teams.">
   <meta name="theme-color" content="#013e3f">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.scriply.io/">
   <meta property="og:site_name" content="Scriply">
   <meta property="og:title" content="Scriply — The back office for small &amp; medium businesses">
-  <meta property="og:description" content="Invoices and bills filled in from your paperwork, kept in step with QuickBooks, and paid in USDC. Free during beta.">
+  <meta property="og:description" content="Invoices and bills filled in from your paperwork, kept in step with QuickBooks, and paid in USDC. Free for freelancers and small teams.">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -70,8 +70,8 @@
       overflow-x: hidden;
     }
 
-    /* ── BETA BANNER ── */
-    .beta-banner {
+    /* ── LAUNCH BANNER ── */
+    .launch-banner {
       background: var(--brand-dark);
       text-align: center;
       padding: 0.6rem 1rem;
@@ -79,9 +79,9 @@
       font-weight: 500;
       color: rgba(255,255,255,0.85);
     }
-    .beta-banner strong { font-weight: 700; color: #fff; }
-    .beta-banner a { color: var(--honey); text-decoration: none; font-weight: 600; margin-left: 0.5rem; }
-    .beta-banner a:hover { text-decoration: underline; }
+    .launch-banner strong { font-weight: 700; color: #fff; }
+    .launch-banner a { color: var(--honey); text-decoration: none; font-weight: 600; margin-left: 0.5rem; }
+    .launch-banner a:hover { text-decoration: underline; }
 
     /* ── NAV ── */
     nav {
@@ -330,18 +330,6 @@
     }
 
     .check-icon { color: var(--brand-mid); font-weight: 700; flex-shrink: 0; }
-
-    .feature-beta-note {
-      display: inline-block;
-      background: var(--honey);
-      color: var(--brand-dark);
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 0.15rem 0.5rem;
-      border-radius: 999px;
-      margin-left: 0.3rem;
-      white-space: nowrap;
-    }
 
     .solutions-grid-single {
       grid-template-columns: 1fr;
@@ -628,6 +616,9 @@
       margin: 0 auto 2.5rem;
     }
 
+    /* The Free plan's limits, under the line above them */
+    .cta-section .cta-plan { font-size: 0.9rem; margin-top: -1.75rem; }
+
     .cta-actions {
       display: flex;
       gap: 1rem;
@@ -867,9 +858,9 @@
 
   <a href="#main" class="skip-link">Skip to content</a>
 
-  <!-- BETA BANNER -->
-  <div class="beta-banner">
-    Now in Beta — <strong>Free during our launch period.</strong> Pricing introduced with advance notice.
+  <!-- LAUNCH BANNER -->
+  <div class="launch-banner">
+    <strong>Free forever for freelancers and small teams.</strong> Digital asset payments, wallets and invoice tokenization are always free.
     <a href="https://app.scriply.io">Get Started →</a>
   </div>
 
@@ -893,7 +884,7 @@
   <main id="main">
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-eyebrow">Beta — Free Access Now</div>
+    <div class="hero-eyebrow">Free Forever for Small Teams</div>
     <h1>The back office for<br /><em>small &amp; medium</em> businesses.</h1>
     <p>Invoices and bills filled in from your paperwork, kept in step with <span translate="no">QuickBooks</span>, and paid in <span translate="no">USDC</span>. Coming soon: invoices you can turn into tokens, reported on publicly every day.</p>
     <div class="hero-actions">
@@ -928,7 +919,7 @@
     <div class="section-header">
       <span class="section-eyebrow">Features</span>
       <h2 class="section-title">What <span translate="no">Scriply</span> does<br />for your business today.</h2>
-      <p class="section-sub">Everything below is live in the beta.</p>
+      <p class="section-sub">Everything below is live today, except what's marked Coming Soon.</p>
     </div>
     <div class="solutions-grid">
       <div class="solution-card">
@@ -943,9 +934,10 @@
         </ul>
       </div>
       <div class="solution-card">
+        <span class="coming-soon-badge">Coming Soon</span>
         <span class="solution-icon" aria-hidden="true">📬</span>
         <h3>Bills from your inbox</h3>
-        <p>Connect Gmail and the bills that arrive by email come into <span translate="no">Scriply</span> as drafts, ready for you to complete.</p>
+        <p>Connect Gmail and the bills that arrive by email will come into <span translate="no">Scriply</span> as drafts, ready for you to complete.</p>
         <ul class="solution-features">
           <li><span class="check-icon" aria-hidden="true">✓</span> Found in your email automatically</li>
           <li><span class="check-icon" aria-hidden="true">✓</span> Draft → ready to pay → paid</li>
@@ -1247,7 +1239,8 @@
   <!-- CTA -->
   <section class="cta-section">
     <h2>Stop typing<br />your own books.</h2>
-    <p>Let <span translate="no">Scriply</span> fill in your invoices and bills, pay your vendors, and put your receivables to work. Free during beta — no credit card needed.</p>
+    <p>Let <span translate="no">Scriply</span> fill in your invoices and bills, pay your vendors, and put your receivables to work. Free for freelancers and small teams — no credit card needed.</p>
+    <p class="cta-plan">The Free plan: 60 invoices and 60 bills a month, 50 customers, 50 vendors, 30 accounts and 2 users.</p>
     <div class="cta-actions">
       <a href="https://app.scriply.io" class="btn-white">Open <span translate="no">Scriply</span> →</a>
     </div>
@@ -1257,7 +1250,7 @@
   <!-- DISCLAIMER -->
   <div class="disclaimer">
     <p>
-      <strong>Beta Disclaimer.</strong> <span translate="no">Scriply</span> is currently in beta. The platform is provided free of charge during the beta period. <span translate="no">Scriply</span>, Inc. reserves the right to introduce pricing at any time and will provide users with reasonable advance notice prior to any changes. During the beta period, Gmail bill extraction is limited to 100 emails per account. <span translate="no">Scriply</span> does not guarantee the completeness, accuracy, or reliability of any financial data, transaction records, or AI-generated outputs. All information provided through the platform is for informational purposes only and should not be relied upon as a substitute for professional accounting, legal, or financial advice. Receivables tokens represent invoices as described in the tokenization terms; <span translate="no">Scriply</span> does not represent that any invoice will be paid or the credit quality of any receivable. Use of <span translate="no">Scriply</span> during the beta period is at your own discretion and risk.
+      <strong>Disclaimer.</strong> <span translate="no">Scriply</span>'s Free plan is free for freelancers and small teams, and is only ever made more generous: up to 60 invoices and 60 bills a month, 50 customers, 50 vendors, 30 accounts and 2 users. Digital asset payments, wallets and invoice tokenization are free on every plan and always will be; you pay only the <span translate="no">Solana</span> network fee on the payments you send. Paid plans for larger teams will be introduced with reasonable advance notice. <span translate="no">Scriply</span> does not guarantee the completeness, accuracy, or reliability of any financial data, transaction records, or AI-generated outputs. All information provided through the platform is for informational purposes only and should not be relied upon as a substitute for professional accounting, legal, or financial advice. Receivables tokens represent invoices as described in the tokenization terms; <span translate="no">Scriply</span> does not represent that any invoice will be paid or the credit quality of any receivable. Use of <span translate="no">Scriply</span> is at your own discretion and risk.
     </p>
   </div>
 
