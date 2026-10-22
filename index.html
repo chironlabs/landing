@@ -4,847 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scriply — AI Accounting Meets Blockchain</title>
-  <meta name="description" content="The back office for small and medium businesses: invoices and bills filled in from your paperwork, kept in step with QuickBooks, and paid in USDC. Now in pre-launch, free for freelancers and small teams.">
+  <meta name="description" content="The back office for small and medium businesses: invoices and bills filled in from your paperwork, and vendors paid in USDC from a wallet only you control. Now in pre-launch, free for freelancers and small teams.">
   <meta name="theme-color" content="#013e3f">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.scriply.io/">
   <meta property="og:site_name" content="Scriply">
   <meta property="og:title" content="Scriply — The back office for small &amp; medium businesses">
-  <meta property="og:description" content="Invoices and bills filled in from your paperwork, kept in step with QuickBooks, and paid in USDC. Now in pre-launch, free for freelancers and small teams.">
+  <meta property="og:description" content="Invoices and bills filled in from your paperwork, and vendors paid in USDC from a wallet only you control. Now in pre-launch, free for freelancers and small teams.">
   <meta name="twitter:card" content="summary">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&family=Newsreader:opsz@6..72&display=swap" rel="stylesheet">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --brand: #013e3f;
-      --brand-dark: #002525;
-      --brand-mid: #115d51;
-      --brand-light: #e9f1f0;
-      --ocean: #0b3e36;
-      --honey: #fdd344;
-      --white: #ffffff;
-      --cream: #f3eee7;
-      --cream-light: #f7f4ef;
-      --text: #002525;
-      --text-mid: #242424;
-      --muted: #666666;
-      --border: #d8d8d8;
-      --border-light: #e4edec;
-      --radius: 10px;
-      --radius-lg: 16px;
-      --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-      --serif: 'DM Serif Display', Georgia, serif;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    /* Clears the sticky nav when jumping to a section */
-    [id] { scroll-margin-top: 5rem; }
-
-    .skip-link {
-      position: absolute;
-      left: 1rem;
-      top: -3rem;
-      z-index: 300;
-      background: var(--brand);
-      color: #fff;
-      padding: 0.6rem 1rem;
-      border-radius: var(--radius);
-      font-weight: 600;
-      text-decoration: none;
-    }
-    .skip-link:focus { top: 1rem; }
-
-    .hero h1, .section-title, .subsection-title, .cta-section h2 { text-wrap: balance; }
-
-    body {
-      font-family: var(--sans);
-      background: var(--white);
-      color: var(--text);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    /* ── LAUNCH BANNER ── */
-    .launch-banner {
-      background: var(--brand-dark);
-      text-align: center;
-      padding: 0.6rem 1rem;
-      font-size: 0.82rem;
-      font-weight: 500;
-      color: rgba(255,255,255,0.85);
-    }
-    .launch-banner strong { font-weight: 700; color: #fff; }
-    .launch-banner a { color: var(--honey); text-decoration: none; font-weight: 600; margin-left: 0.5rem; }
-    .launch-banner a:hover { text-decoration: underline; }
-
-    /* ── NAV ── */
-    nav {
-      position: sticky;
-      top: 0;
-      z-index: 200;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 5%;
-      background: rgba(255,255,255,0.97);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    /* The brand lockup, as scriply-ui's BrandLockup: the coin beside "Scriply" in Newsreader */
-    .brand-lockup {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Newsreader', Georgia, serif;
-      font-weight: 400;
-      letter-spacing: -0.01em;
-      line-height: 1;
-      text-decoration: none;
-    }
-    .brand-lockup svg { flex: none; display: block; }
-
-    .nav-logo {
-      font-size: 1.375rem;
-      color: var(--brand);
-    }
-
-    nav ul { display: flex; gap: 2rem; list-style: none; align-items: center; }
-    nav ul a {
-      color: var(--text-mid);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    nav ul a:hover { color: var(--brand); }
-
-    .nav-cta {
-      background: var(--brand) !important;
-      color: #fff !important;
-      padding: 0.55rem 1.4rem !important;
-      border-radius: 999px !important;
-      font-weight: 600 !important;
-      transition: background 0.2s !important;
-    }
-    .nav-cta:hover { background: var(--brand-dark) !important; }
-
-    /* Opens the links on phones, where they don't fit in the bar */
-    .nav-toggle {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      background: none;
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      color: var(--brand);
-      cursor: pointer;
-    }
-
-    /* ── HERO ── */
-    .hero {
-      background: var(--cream);
-      padding: 7rem 5% 6rem;
-      text-align: center;
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .hero-eyebrow {
-      display: inline-block;
-      background: var(--brand-light);
-      color: var(--brand-mid);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.4rem 1.1rem;
-      border-radius: 999px;
-      margin-bottom: 2rem;
-    }
-
-    .hero h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.8rem, 5.5vw, 4.8rem);
-      font-weight: 400;
-      letter-spacing: -1px;
-      line-height: 1.1;
-      max-width: 820px;
-      margin: 0 auto 1.5rem;
-      color: var(--text);
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--brand-mid);
-    }
-
-    .hero p {
-      color: var(--muted);
-      font-size: 1.1rem;
-      max-width: 500px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.75;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    /* The secondary buttons, side by side under Get Started Free */
-    .hero-actions-secondary {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      background: var(--brand);
-      color: #fff;
-      padding: 0.85rem 2rem;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .btn-primary:hover { background: var(--brand-dark); transform: translateY(-1px); }
-
-    .btn-secondary {
-      display: inline-block;
-      background: transparent;
-      color: var(--text);
-      padding: 0.85rem 2rem;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      text-decoration: none;
-      border: 1.5px solid var(--border);
-      transition: border-color 0.2s, transform 0.15s;
-    }
-    .btn-secondary:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-1px); }
-
-    /* ── SOLUTIONS ── */
-    .solutions {
-      padding: 6rem 5%;
-      background: var(--white);
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 3.5rem;
-    }
-
-    .section-eyebrow {
-      display: block;
-      color: var(--brand-mid);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
-    }
-
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(1.9rem, 3vw, 2.8rem);
-      font-weight: 400;
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    .section-sub {
-      color: var(--muted);
-      font-size: 1.05rem;
-      max-width: 500px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    .solutions-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .solution-card {
-      background: var(--white);
-      border: 1.5px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 2.25rem;
-      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-    }
-    .solution-card:hover {
-      border-color: var(--brand);
-      box-shadow: 0 8px 32px rgba(1,62,63,0.08);
-      transform: translateY(-3px);
-    }
-
-    .solution-icon {
-      font-size: 2rem;
-      margin-bottom: 1.25rem;
-      display: block;
-    }
-
-    .solution-card h3 {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 400;
-      margin-bottom: 0.75rem;
-      color: var(--text);
-    }
-
-    .solution-card > p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.65;
-      margin-bottom: 1.25rem;
-    }
-
-    .solution-features {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .solution-features li {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.5rem;
-      font-size: 0.86rem;
-      color: var(--text-mid);
-    }
-
-    .check-icon { color: var(--brand-mid); font-weight: 700; flex-shrink: 0; }
-
-    .solutions-grid-single {
-      grid-template-columns: 1fr;
-      max-width: 420px;
-      margin: 0 auto;
-    }
-
-    .solutions-grid-two {
-      grid-template-columns: repeat(2, 1fr);
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .roadmap-grid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    /* ── DEMOS ── */
-    .demos {
-      padding: 6rem 5%;
-      background: var(--cream-light);
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    /* Each demo takes up to 560px, side by side when there's room */
-    .demos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 560px));
-      justify-content: center;
-      gap: 1.5rem;
-    }
-
-    .demo-card {
-      background: var(--white);
-      border: 1.5px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .demo-card iframe {
-      display: block;
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      border: 0;
-    }
-
-    .demo-card figcaption { padding: 1.25rem 1.5rem 1.5rem; }
-
-    .demo-card h3 {
-      font-family: var(--serif);
-      font-size: 1.2rem;
-      font-weight: 400;
-      margin-bottom: 0.4rem;
-      color: var(--text);
-    }
-
-    .demo-card p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.65;
-    }
-
-    .coming-soon-badge {
-      display: inline-block;
-      background: var(--brand-light);
-      color: var(--brand-mid);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.3rem 0.7rem;
-      border-radius: 999px;
-      margin-bottom: 1rem;
-    }
-
-    /* ── LOGOS BAR ── */
-    .logos-bar {
-      background: var(--cream-light);
-      border-top: 1px solid var(--border-light);
-      border-bottom: 1px solid var(--border-light);
-      padding: 2.5rem 5%;
-      text-align: center;
-    }
-
-    .logos-bar p {
-      color: var(--muted);
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1.75rem;
-    }
-
-    .logos-grid {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 3.5rem;
-      flex-wrap: wrap;
-    }
-
-    .logo-item {
-      color: #b4b4b4;
-      font-size: 0.9rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    /* ── STATS ── */
-    .stats {
-      background: var(--brand);
-      padding: 5rem 5%;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-
-    .stat-item {
-      background: transparent;
-      padding: 2.5rem 2rem;
-      text-align: center;
-    }
-
-    .stat-item strong {
-      display: block;
-      font-family: var(--serif);
-      font-size: 2.75rem;
-      font-weight: 400;
-      letter-spacing: -1px;
-      color: var(--honey);
-      margin-bottom: 0.4rem;
-    }
-
-    .stat-item span {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.85rem;
-    }
-
-    /* ── VALUE PROPS ── */
-    .value-props {
-      padding: 6rem 5%;
-      background: var(--cream);
-    }
-
-    .props-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 3.5rem;
-    }
-
-    .prop-card {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid var(--border-light);
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .prop-card:hover { box-shadow: 0 8px 32px rgba(1,62,63,0.08); transform: translateY(-3px); }
-
-    .prop-visual {
-      background: linear-gradient(135deg, var(--brand-light), #d3e8dc);
-      height: 160px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-    }
-
-    .prop-content { padding: 1.75rem; }
-    .prop-content h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--text); }
-    .prop-content p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; margin-bottom: 1rem; }
-    .prop-link { color: var(--brand-mid); font-size: 0.875rem; font-weight: 600; text-decoration: none; }
-    .prop-link:hover { text-decoration: underline; }
-
-    /* ── HOW IT WORKS ── */
-    .how-it-works {
-      padding: 6rem 5%;
-      background: var(--white);
-    }
-
-    .flow-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-    }
-
-    .flow-step {
-      text-align: center;
-      padding: 2rem 1.5rem;
-    }
-
-    .step-number {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--brand-light);
-      color: var(--brand-mid);
-      font-weight: 800;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1.25rem;
-    }
-
-    .flow-step h3, .flow-step h4 { font-family: var(--serif); font-size: 1rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--text); }
-    .flow-step p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
-
-    /* ── TESTIMONIALS ── */
-    .testimonials {
-      padding: 6rem 5%;
-      background: var(--cream);
-      border-top: 1px solid var(--border-light);
-    }
-
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-    }
-
-    .review-card {
-      background: var(--white);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      transition: box-shadow 0.2s;
-    }
-    .review-card:hover { box-shadow: 0 4px 20px rgba(1,62,63,0.08); }
-
-    .stars { color: var(--honey); font-size: 0.875rem; margin-bottom: 0.75rem; }
-    .review-text { color: var(--text-mid); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.25rem; }
-
-    .reviewer { display: flex; align-items: center; gap: 0.75rem; }
-    .reviewer-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--brand-light);
-      color: var(--brand-mid);
-      font-weight: 700;
-      font-size: 0.85rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    .reviewer-name { font-size: 0.875rem; font-weight: 700; color: var(--text); }
-    .reviewer-role { font-size: 0.78rem; color: var(--muted); }
-
-    /* ── CTA SECTION ── */
-    .cta-section {
-      background: var(--brand-dark);
-      padding: 7rem 5%;
-      text-align: center;
-    }
-
-    .cta-section h2 {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 4vw, 3.8rem);
-      font-weight: 400;
-      letter-spacing: -1px;
-      color: #fff;
-      max-width: 640px;
-      margin: 0 auto 1rem;
-      line-height: 1.1;
-    }
-
-    .cta-section p {
-      color: rgba(255,255,255,0.65);
-      font-size: 1.05rem;
-      max-width: 420px;
-      margin: 0 auto 2.5rem;
-    }
-
-    /* The Free plan's limits, under the line above them */
-    .cta-section .cta-plan { font-size: 0.9rem; margin-top: -1.75rem; }
-
-    .cta-actions {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-white {
-      display: inline-block;
-      background: var(--honey);
-      color: var(--brand-dark);
-      padding: 0.85rem 2rem;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: transform 0.15s, opacity 0.2s;
-    }
-    .btn-white:hover { transform: translateY(-2px); opacity: 0.92; }
-
-    /* ── DISCLAIMER ── */
-    .disclaimer {
-      background: var(--cream-light);
-      border-top: 1px solid var(--border-light);
-      padding: 2rem 5%;
-    }
-    .disclaimer p {
-      color: var(--muted);
-      font-size: 0.75rem;
-      line-height: 1.7;
-      max-width: 900px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--brand-dark);
-      color: rgba(255,255,255,0.5);
-      padding: 4rem 5% 2.5rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 3rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      margin-bottom: 2rem;
-    }
-
-    .footer-brand .footer-logo {
-      font-size: 1.375rem;
-      color: #fff;
-      margin-bottom: 0.75rem;
-    }
-
-    .footer-brand p {
-      font-size: 0.85rem;
-      line-height: 1.7;
-      max-width: 220px;
-    }
-
-    .footer-col h2 {
-      color: rgba(255,255,255,0.6);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 1.25rem;
-    }
-
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
-    .footer-col ul a {
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      font-size: 0.875rem;
-      transition: color 0.2s;
-    }
-    .footer-col ul a:hover { color: #fff; }
-
-    .footer-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .footer-bottom p { font-size: 0.8rem; }
-    .footer-legal { display: flex; gap: 1.5rem; }
-    .footer-legal a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.8rem; }
-    .footer-legal a:hover { color: #fff; }
-
-    .solutions-grid + .solutions-grid { margin-top: 1.5rem; }
-
-    /* ── TOKENIZATION ── */
-    .token-facts {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .token-fact {
-      background: var(--cream-light);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 1.75rem;
-    }
-    .token-fact h3 { font-family: var(--serif); font-size: 1.1rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--text); }
-    .token-fact p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
-
-    .subsection-title {
-      font-family: var(--serif);
-      font-size: 1.6rem;
-      font-weight: 400;
-      text-align: center;
-      color: var(--text);
-      margin: 5rem 0 0.75rem;
-    }
-
-    .report {
-      background: var(--cream);
-      padding: 6rem 5%;
-      border-top: 1px solid var(--border-light);
-    }
-
-    .report-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-      gap: 3rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      align-items: start;
-    }
-
-    .payload {
-      background: var(--brand-dark);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-    }
-
-    .payload-head {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      padding: 0.85rem 1.25rem;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      font-size: 0.78rem;
-      color: rgba(255,255,255,0.6);
-    }
-    .payload-head code { color: var(--honey); font-weight: 600; overflow-wrap: anywhere; }
-
-    .payload pre {
-      margin: 0;
-      padding: 1.25rem;
-      overflow-x: auto;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.78rem;
-      line-height: 1.6;
-      color: #d9ece8;
-    }
-
-    .payload-note { padding: 0 1.25rem 1rem; font-size: 0.75rem; color: rgba(255,255,255,0.5); }
-
-    .fields { display: flex; flex-direction: column; gap: 1.25rem; }
-    .fields dt { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.82rem; font-weight: 600; color: var(--brand-mid); margin-bottom: 0.2rem; }
-    .fields dd { color: var(--text-mid); font-size: 0.9rem; line-height: 1.6; }
-
-    .not-promised {
-      max-width: 1100px;
-      margin: 3rem auto 0;
-      background: var(--white);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-lg);
-      padding: 1.5rem 1.75rem;
-      font-size: 0.9rem;
-      color: var(--text-mid);
-      line-height: 1.65;
-    }
-    .not-promised strong { color: var(--text); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 1024px) {
-      .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
-      .footer-brand { grid-column: 1 / -1; }
-    }
-
-    @media (max-width: 900px) {
-      .solutions-grid, .solutions-grid-two, .props-grid, .reviews-grid, .roadmap-grid, .token-facts, .report-layout { grid-template-columns: 1fr; }
-      .flow-steps { grid-template-columns: repeat(2, 1fr); }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .nav-toggle { display: inline-flex; }
-      nav ul {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 0.5rem 5% 1rem;
-        background: var(--white);
-        border-bottom: 1px solid var(--border-light);
-        box-shadow: 0 8px 24px rgba(1,62,63,0.08);
-      }
-      nav.is-open ul { display: flex; }
-      nav ul a { display: block; padding: 0.75rem 0; font-size: 1rem; }
-      nav ul li:last-child { margin-top: 0.5rem; }
-      .nav-cta { text-align: center; }
-    }
-
-    @media (max-width: 600px) {
-      .flow-steps { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .btn-primary:hover, .btn-secondary:hover, .btn-white:hover, .solution-card:hover, .prop-card:hover { transform: none; }
-    }
-  </style>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 
@@ -871,10 +44,9 @@
       <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
     <ul id="nav-links">
-      <li><a href="#demos">Demos</a></li>
       <li><a href="#solutions">Features</a></li>
       <li><a href="#how">How It Works</a></li>
-      <li><a href="#tokenization">Tokenization</a></li>
+      <li><a href="/crypto-subledger">Crypto Subledger</a></li>
       <li><a href="#roadmap">Roadmap</a></li>
       <li><a href="https://app.scriply.io">Sign In</a></li>
       <li><a href="https://app.scriply.io" class="nav-cta">Get Started Free</a></li>
@@ -885,33 +57,15 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-eyebrow">Pre-Launch · Free Forever for Small Teams</div>
-    <h1>The back office for<br /><em>small &amp; medium</em> businesses.</h1>
-    <p>Invoices and bills filled in from your paperwork, kept in step with <span translate="no">QuickBooks</span>, and paid in <span translate="no">USDC</span>. Coming soon: invoices you can turn into tokens, reported on publicly every day.</p>
+    <h1>Your books,<br /><em>filled in</em> for you.</h1>
+    <p>Drop in the paperwork and <span translate="no">Scriply</span> writes the invoice or bill. Pay vendors in minutes, for cents, from a wallet only you control.</p>
     <div class="hero-actions">
       <a href="https://app.scriply.io" class="btn-primary">Get Started Free</a>
       <div class="hero-actions-secondary">
         <a href="https://app.scriply.io/try" class="btn-secondary">Try It Out in Sandbox</a>
-        <a href="#tokenization" class="btn-secondary">How Tokenization Works</a>
       </div>
     </div>
-  </section>
-
-  <!-- DEMOS -->
-  <section class="demos" id="demos">
-    <div class="section-header">
-      <span class="section-eyebrow">Demos</span>
-      <h2 class="section-title">See <span translate="no">Scriply</span> at work.</h2>
-      <p class="section-sub">Short walkthroughs of the product, recorded in the app.</p>
-    </div>
-    <div class="demos-grid">
-      <figure class="demo-card">
-        <iframe src="https://www.loom.com/embed/6c1cb89d6f544f93a5ef069754896e89" title="Invoice tokenization demo" loading="lazy" allowfullscreen></iframe>
-        <figcaption>
-          <h3>Invoice tokenization</h3>
-          <p>Turning tokenization on after verification, tokenizing an invoice and reading its memo on <span translate="no">Solana</span>, and the daily report on every token. 5 min.</p>
-        </figcaption>
-      </figure>
-    </div>
+    <div class="hero-fork">Books in <span translate="no">QuickBooks</span>? Bring your crypto into them.<a href="/crypto-subledger">Crypto subledger →</a></div>
   </section>
 
   <!-- SOLUTIONS -->
@@ -946,10 +100,10 @@
       </div>
       <div class="solution-card">
         <span class="solution-icon" aria-hidden="true">📚</span>
-        <h3>Works with <span translate="no">QuickBooks</span></h3>
-        <p>Keep your books in <span translate="no">QuickBooks Online</span> and <span translate="no">Scriply</span> syncs them, or keep them in <span translate="no">Scriply</span>. Start from your <span translate="no">QuickBooks</span> company in one step.</p>
+        <h3>Books kept for you</h3>
+        <p>Every invoice and bill lands in your books as you save it, so they're ready when you or your accountant look.</p>
         <ul class="solution-features">
-          <li><span class="check-icon" aria-hidden="true">✓</span> Invoices, bills, customers, vendors and accounts synced</li>
+          <li><span class="check-icon" aria-hidden="true">✓</span> Customers, vendors and accounts in one place</li>
           <li><span class="check-icon" aria-hidden="true">✓</span> Chart of accounts, numbered by range</li>
           <li><span class="check-icon" aria-hidden="true">✓</span> General ledger for any account and period</li>
         </ul>
@@ -992,7 +146,7 @@
   <!-- STATS -->
   <div class="stats">
     <div class="stats-grid">
-      <div class="stat-item"><strong><span translate="no">QuickBooks</span></strong><span>Online books, synced into <span translate="no">Scriply</span></span></div>
+      <div class="stat-item"><strong>60</strong><span>Invoices and 60 bills a month, free</span></div>
       <div class="stat-item"><strong>3</strong><span>Roles: admin, member, read-only</span></div>
       <div class="stat-item"><strong>0</strong><span>Wallet keys <span translate="no">Scriply</span> holds</span></div>
       <div class="stat-item"><strong><span translate="no">USDC</span></strong><span>Bills paid on <span translate="no">Solana</span>, at 1:1</span></div>
@@ -1009,8 +163,8 @@
     <div class="flow-steps">
       <div class="flow-step">
         <div class="step-number">1</div>
-        <h3>Start from your books</h3>
-        <p>Sign in with <span translate="no">QuickBooks</span> to bring in your company and its books, or start fresh in <span translate="no">Scriply</span>. Invite your team.</p>
+        <h3>Start in a minute</h3>
+        <p>Sign up and your books are set up for you, with a chart of accounts ready to use. Invite your team.</p>
       </div>
       <div class="flow-step">
         <div class="step-number">2</div>
@@ -1030,165 +184,14 @@
     </div>
   </section>
 
-  <!-- TOKENIZATION -->
-  <section class="solutions" id="tokenization">
-    <div class="section-header">
-      <span class="coming-soon-badge">Coming Soon · In testing on <span translate="no">Solana</span> devnet</span>
-      <span class="section-eyebrow">Invoice Tokenization</span>
-      <h2 class="section-title">Your invoices,<br />as tokens anyone can check.</h2>
-      <p class="section-sub">Tokenizing an invoice your customer still owes mints tokens for what's outstanding into your business's wallet. Each token stands for one dollar owed, and burns as it's paid.</p>
-    </div>
-    <div class="token-facts">
-      <div class="token-fact">
-        <h3>One token per dollar owed</h3>
-        <p>Each business has its own US dollar receivables token. Its supply always equals what's still owed on the business's tokenized invoices, so a token from one business is never mixed with another's.</p>
+  <!-- TOKENIZATION, IN SHORT -->
+  <section class="token-band" aria-labelledby="token-band-title">
+    <div class="token-band-inner">
+      <div>
+        <h2 id="token-band-title">Turn invoices into tokens.</h2>
+        <p>Tokens for what your customers still owe, minted to your wallet and burned as they pay, with a public report on every token.</p>
       </div>
-      <div class="token-fact">
-        <h3>Burns as invoices are paid</h3>
-        <p>A payment, credit or write-off burns the same number of tokens. A tokenized invoice is locked against edits until its last token burns, and a change in <span translate="no">QuickBooks</span> is held back and disclosed rather than applied silently.</p>
-      </div>
-      <div class="token-fact">
-        <h3>On <span translate="no">Solana</span>, with nothing private on-chain</h3>
-        <p>Every mint and burn is recorded on-chain with a fingerprint of the invoice behind it. Nothing on-chain names the business, its customers or its invoices.</p>
-      </div>
-      <div class="token-fact">
-        <h3>Minted to your wallet</h3>
-        <p>Tokens go to a wallet your business proved it controls. They move only between accounts the platform allows, and <span translate="no">Scriply</span>, as the issuer, burns them as invoices are paid.</p>
-      </div>
-      <div class="token-fact">
-        <h3>Opt-in, per business</h3>
-        <p>An admin turns tokenizing on after the business is verified: they accept the tokenization terms and choose the wallet. Nothing goes on-chain before that.</p>
-      </div>
-      <div class="token-fact">
-        <h3>A limit on what's out at once</h3>
-        <p>Each business has a cap on how much it can have tokenized at a time. A tokenization over it is refused before anything is minted.</p>
-      </div>
-    </div>
-
-    <h3 class="subsection-title">What we check before an invoice is tokenized.</h3>
-    <p class="section-sub" style="text-align:center">A token is only worth the invoice behind it. Every business and every invoice goes through these steps first.</p>
-    <div class="flow-steps">
-      <div class="flow-step">
-        <div class="step-number">1</div>
-        <h4>We verify the business</h4>
-        <p>A business passes our review before it can tokenize: its owners with a 25% stake or more and a person who controls it are identified, and the business and its people are screened against sanctions lists.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-number">2</div>
-        <h4>We verify the wallet</h4>
-        <p>Tokens are only minted to a wallet the business proves it controls, by signing with it.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-number">3</div>
-        <h4>We check every invoice</h4>
-        <p>Each invoice needs a supporting document and a customer who clears sanctions screening. It's compared with every invoice already tokenized, by any business: the same invoice is refused, and one that looks alike waits for a person to review it. An invoice from <span translate="no">QuickBooks</span> is read again there before anything is minted.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-number">4</div>
-        <h4>We report on every token, publicly</h4>
-        <p>Every day we publish each token's report — what's outstanding, how overdue, how concentrated, how fast it's paid, and what we verified — with its fingerprint recorded on-chain.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- COLLATERAL REPORT -->
-  <section class="report" id="report">
-    <div class="section-header">
-      <span class="section-eyebrow">The Daily Report</span>
-      <h2 class="section-title">What a lender sees<br />about every token.</h2>
-      <p class="section-sub">When tokenization launches, each token's latest report will be public, by its address, with no sign-in. It shows the totals, aging and risk, without the invoices or customers behind them.</p>
-    </div>
-    <div class="report-layout">
-      <div class="payload">
-        <div class="payload-head">
-          <code>GET /v1/public/receivables-tokens/{network}/{tokenAddress}</code>
-          <span>Example values</span>
-        </div>
-<pre>{
-  "network": "sol",
-  "tokenAddress": "Ah8cVgnZ8SjPzRtJoCAo26BHBjc4T7xQ6Rsk3apRXdRY",
-  "currency": "USD",
-  "reportId": "usd.2026-10-06",
-  "asOf": "2026-10-06T00:00:00Z",
-  "sha256": "a7eb512136b792d30f616ebe720f5a0c0e079ab99752a26f222faa196f5bd85f",
-  "attestations": { "sol": "3Vj9uCytyrTshBTim1ELkc2RH9cLA9jxUTSyemENPL8oFgfcbBFFL39gsrdLy3z1g4zQaF8tYR1YzZqv8CqiaNhZ" },
-
-  "supply": "184250",
-  "circulatingSupply": "184250",
-  "outstandingUnits": "184250",
-  "burnDebt": "0",
-  "burnDebtOverdue": false,
-  "reconciled": true,
-  "unattributedRatio": "0.012",
-
-  "aging": {
-    "current": "132400",
-    "days1To30": "38150",
-    "days31To60": "9800",
-    "days61To90": "3900",
-    "over90": "0"
-  },
-
-  "assurance": {
-    "kyb": "approved",
-    "kybApprovedAt": "2026-07-14T16:02:11Z",
-    "kybMethod": "manual-review",
-    "checks": [
-      "control-person-identified",
-      "beneficial-owners-identified",
-      "identities-verified",
-      "sanctions-screened",
-      "wallet-verified",
-      "ein-confirmed",
-      "business-registered"
-    ],
-    "accountingSystemShare": "0.92"
-  },
-
-  "risk": {
-    "topCustomerShare": "0.22",
-    "topFiveShare": "0.71",
-    "concentrationIndex": "0.14",
-    "selfIssuedShare": "0.08",
-    "receivableTurnover": "7.9",
-    "daysSalesOutstanding": "46.2",
-    "turnoverPeriodDays": 212,
-    "historyDays": 212,
-    "settledTokenizations": 37,
-    "flags": ["self-issued-invoices"]
-  }
-}</pre>
-        <p class="payload-note">Illustrative report for a made-up business. Units are dollars of invoices still owed.</p>
-      </div>
-      <dl class="fields">
-        <div>
-          <dt>supply · outstandingUnits · reconciled</dt>
-          <dd>Tokens in existence, and dollars still owed on the invoices behind them. They match whenever the report reconciles.</dd>
-        </div>
-        <div>
-          <dt>burnDebt</dt>
-          <dd>Tokens owed for burning that couldn't be burned yet. While it's above zero the token is under-backed, the report says so, and the business can't tokenize anything new.</dd>
-        </div>
-        <div>
-          <dt>aging</dt>
-          <dd>What's owed, by days past due: current, 1–30, 31–60, 61–90 and over 90.</dd>
-        </div>
-        <div>
-          <dt>risk</dt>
-          <dd>How concentrated the customers are, the share of invoices made in <span translate="no">Scriply</span> rather than an accounting system, how fast invoices are paid, and flags from a fixed list, such as <code>concentration-high</code> or <code>aging-over-90-high</code>.</dd>
-        </div>
-        <div>
-          <dt>assurance</dt>
-          <dd>What we verified about the business behind the token, such as its EIN and registration, its owners and its wallet, without saying who it is.</dd>
-        </div>
-        <div>
-          <dt>sha256 · attestations</dt>
-          <dd>The fingerprint of the day's full report, and the <span translate="no">Solana</span> transaction that recorded it. A lender given the full report hashes it and compares it with the chain.</dd>
-        </div>
-      </dl>
-    </div>
-    <div class="not-promised">
-      <strong>What the report doesn't promise.</strong> We stand behind how each token is made: who could tokenize, what was checked, and that supply matches what's owed. We don't promise that customers will pay or how good the invoices are as credit. Those are for each lender to judge, and the report is there so they can.
+      <a href="/crypto-subledger#tokenization" class="btn-white">How tokenization works →</a>
     </div>
   </section>
 
@@ -1259,16 +262,16 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <span class="brand-lockup footer-logo" translate="no"><svg width="30" height="30" aria-hidden="true"><use href="#coin"/></svg><span translate="no">Scriply</span></span>
-        <p>AI bookkeeping and <span translate="no">USDC</span> bill pay for small and medium businesses, with invoice tokenization on the way.</p>
+        <p>AI bookkeeping and <span translate="no">USDC</span> bill pay for small and medium businesses, and a crypto subledger for books kept elsewhere.</p>
       </div>
       <div class="footer-col">
         <h2>Features</h2>
         <ul>
-          <li><a href="#solutions">Invoices &amp; Bills</a></li>
-          <li><a href="#solutions"><span translate="no">QuickBooks</span> Sync</a></li>
-          <li><a href="#solutions"><span translate="no">USDC</span> Bill Pay</a></li>
-          <li><a href="#tokenization">Invoice Tokenization</a></li>
-          <li><a href="#report">Daily Token Report</a></li>
+          <li><a href="/#solutions">Invoices &amp; Bills</a></li>
+          <li><a href="/#solutions"><span translate="no">USDC</span> Bill Pay</a></li>
+          <li><a href="/crypto-subledger">Crypto Subledger</a></li>
+          <li><a href="/crypto-subledger#tokenization">Invoice Tokenization</a></li>
+          <li><a href="/crypto-subledger#report">Daily Token Report</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1299,6 +302,14 @@
   </footer>
 
   <script>
+    // Tokenization and the daily report moved to their own page; links made
+    // before the move still land on them.
+    (function () {
+      if (location.hash === '#tokenization' || location.hash === '#report') {
+        location.replace('/crypto-subledger' + location.hash);
+      }
+    })();
+
     // The phone menu: opens and closes the links, and closes once one is chosen.
     (function () {
       var nav = document.querySelector('nav');
