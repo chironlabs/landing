@@ -784,6 +784,121 @@ footer {
 }
 .not-promised strong { color: var(--text); }
 
+/* ── THE TWO PAGES ── */
+/* Under the home hero: the way across for a business whose books are elsewhere */
+.hero-fork {
+  margin-top: 2.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: 999px;
+  padding: 0.5rem 0.5rem 0.5rem 1.25rem;
+  font-size: 0.92rem;
+  color: var(--text);
+}
+.hero-fork a {
+  background: var(--honey);
+  color: var(--brand-dark);
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  text-decoration: none;
+}
+.hero-fork a:hover { opacity: 0.9; }
+
+/* The accounting systems the subledger works with */
+.works-with {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.works-with .system {
+  border: 1px solid var(--border);
+  background: var(--white);
+  border-radius: 8px;
+  padding: 0.3rem 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.works-with .system.soon { border-style: dashed; color: var(--muted); font-weight: 500; }
+
+/* The subledger hero's example: one wallet transaction, classified and recorded */
+.ledger {
+  margin: 2.5rem auto 0;
+  max-width: 640px;
+  text-align: left;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 30px rgba(1,62,63,0.08);
+  overflow: hidden;
+}
+.ledger-row {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  border-top: 1px solid var(--border-light);
+  font-size: 0.9rem;
+}
+.ledger-row:first-child { border-top: 0; }
+.ledger-step {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-mid);
+  padding-top: 0.15rem;
+}
+.ledger-meta { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.78rem; color: var(--muted); }
+.ledger-balances {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.15rem 1.25rem;
+  margin-top: 0.35rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+}
+.ledger-balances .head { color: var(--muted); font-size: 0.72rem; }
+.ledger-balances .num { text-align: right; }
+.ledger-example {
+  display: block;
+  padding: 0.45rem 1.25rem;
+  background: var(--brand-light);
+  color: var(--brand-mid);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* On the home page: tokenization in two lines, linking to where it's explained */
+.token-band {
+  background: var(--brand);
+  padding: 3rem 5%;
+}
+.token-band-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.token-band h2 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; color: #fff; margin-bottom: 0.25rem; }
+.token-band p { color: rgba(255,255,255,0.7); font-size: 0.95rem; max-width: 560px; }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
@@ -818,6 +933,8 @@ footer {
 @media (max-width: 600px) {
   .flow-steps { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .ledger-row { grid-template-columns: minmax(0, 1fr); gap: 0.15rem; }
+  .hero-fork { border-radius: var(--radius); padding: 0.75rem 1rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
